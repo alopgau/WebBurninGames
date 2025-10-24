@@ -52,25 +52,27 @@
         <section>
             <h1>Formulario de contacto</h1>
        <form action="/send/" method="post">
-        <label for=""> Motivo de contacto:
-        <select name="" id=""> 
-            </label>
+        <label> Motivo de contacto:
+        <select name="motivos" id="motivos"> 
+            
             <option value="1">Patrocinio o asunto empresarial</option>
             <option value="">Contratación como personal del equipo</option>
             <option value="">Contratación como redactor freelance</option>
         </select>
+        </label>
          <label> Email:
-                <input type="email" name="">
+                <input type="email" name="email">
             </label>
             <label>Nombre:
-                <input type="text" name="">
+                <input type="text" name="nombre">
             </label>
             <label> Asunto:
-                <input type="text" name="">
+                <input type="text" name="asunto">
             </label>
             <label> Mensaje:
-                <textarea name="" cols="30" rows="10"></textarea>
+                <textarea name="mensaje" cols="30" rows="10"></textarea>
             </label>
+            </form>
         </section>
     </main>
      <footer>
