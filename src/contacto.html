@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BurninGames</title>
-</head>
-<body>
-    <header>
-        <img src="../assets/images/logo.png" alt="Logo BurninGames">
-        <section>
-            <h2>Navegar a</h2>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="equipo.html">Nuestro equipo</a></li>
-                <li><a href="foro.html">Foro</a></li>
-                <li><a href="newsletter.html">Lanzamientos</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-        </nav>
-        </section>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BurninGames</title>
+    </head>
+    <body>
+        <header>
+            <img src="../assets/images/logo.png" alt="Logo BurninGames">
+            <section>
+                <h2>Navegar a</h2>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="equipo.html">Nuestro equipo</a></li>
+                    <li><a href="foro.html">Foro</a></li>
+                    <li><a href="newsletter.html">Lanzamientos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+            </section>
 
          <section>
             <h2>Búsqueda</h2>
@@ -31,11 +31,11 @@
                 </search>
                 <button>Suscríbete a nuestra newsletter</button>
 
-        </section>
+         </section>
 
          <section>
             <h2>Contacto y RRSS</h2>
-            <address>
+               <address>
 
                 
 
@@ -47,37 +47,45 @@
                 <button>Contáctanos</button>
         </section>
 
-    </header>
-    <main>
-        <section>
-            <h1>Formulario de contacto</h1>
-       <form action="/send/" method="post">
-        <label> Motivo de contacto:
-        <select name="motivos" id="motivos"> 
-            
-            <option value="1">Patrocinio o asunto empresarial</option>
-            <option value="">Contratación como personal del equipo</option>
-            <option value="">Contratación como redactor freelance</option>
-        </select>
-        </label>
-         <label> Email:
-                <input type="email" name="email">
-            </label>
-            <label>Nombre:
-                <input type="text" name="nombre">
-            </label>
-            <label> Asunto:
-                <input type="text" name="asunto">
-            </label>
-            <label> Mensaje:
-                <textarea name="mensaje" cols="30" rows="10"></textarea>
-            </label>
-            </form>
-        </section>
+        </header>
+        <main>
+                <h1>Contacto y newsletter</h1>
+                    <section>
+                        <h2>Formulario de contacto</h2>
+                        <form action="/send/" method="post">
+                        <label> Motivo de contacto:
+                            <select name="motivos" id="motivos"> 
+                                <option value="1">Patrocinio o asunto empresarial</option>
+                                <option value="">Contratación como personal del equipo</option>
+                                <option value="">Contratación como redactor freelance</option>
+                            </select>
+                            </label>
+                        <label> Email:
+                               <input type="email" name="email" placeholder="Introduce tu email">
+                        </label>
+                        <label>Nombre:
+                            <input type="text" name="nombre" placeholder="Introduce tu nombre">
+                        </label>
+                        <label> Asunto:
+                            <input type="text" name="asunto" placeholder="Introduce el asunto">
+                        </label>
+                        <label> Mensaje:
+                            <textarea name="mensaje" cols="30" rows="10" placeholder="Introduce tu mensaje"></textarea>
+                        </label>
+                        </form>
+            </section>
+                <section>
+                    <h2>Newsletter:</h2>
+                    <form action="/send/" method="post">
+                        <label>Email:
+                            <input type="text" name="newsletter" placeholder="Introduce tu email">
+                        </label>
+                    </form>
+                </section>
     </main>
      <footer>
         <address>
-        <ul>
+            <ul>
            
             <li><a href="contacto.html">Contacto
             </a></li>
@@ -89,9 +97,9 @@
             </a></li>
             <li><a href="avisolegal.html">Aviso legal
             </a></li>
-        </ul>
+            </ul>
         </address>
         <p>© BurninGames 2025. All rights reserved</p>
-     </footer>
-</body>
+        </footer>
+    </body> 
 </html>
