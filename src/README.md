@@ -44,4 +44,12 @@ El `<table>` del foro está puesto debido a que estamos comparando datos
 
 Por último, los `<textarea>` están pensados para mensajes que pueden extenderse mucho (como los comentarios del foro)
 
+--- 
+## **Validaciones**
 
+![](Validacion1.png)
+![](Validacion2.png)
+![](Validacion3.png)
+![](Validacion4.png)
+![](Validacion5.png)
+![](Validacion6.png)
