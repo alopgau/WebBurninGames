@@ -1,0 +1,19 @@
+/* Reseteo variables*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* Variables e importaciones */
+:root {
+--color-primario: #fdf0d5;
+--color-secundario: #c1121f;
+}
+
+.cabecera {
+background: var(--color-secundario);
+display: flex;
+}
+.menu {
+    color: #ffffff;
+}
