@@ -9,45 +9,44 @@
     <body>
         <header class="cabecera">
             <img class="cabecera__logo" src="../assets/images/logo.png" alt="Logo BurninGames">
-            <section>
-                <h2>Navegar a</h2>
+            <section class="cabecera__navegar">
+                <h2 class="cabecera__titulo">Navegar a</h2>
             <nav class="menu">
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="equipo.html">Nuestro equipo</a></li>
-                    <li><a href="foro.html">Foro</a></li>
-                    <li><a href="newsletter.html">Lanzamientos</a></li>
-                    <li><a href="contacto.html">Contacto y Newsletter</a></li>
+                <ul class="menu__lista">
+                    <li><a class="menu__lista--elemento" href="index.html">Inicio</a></li>
+                    <li><a class="menu__lista--elemento" href="equipo.html">Nuestro equipo</a></li>
+                    <li><a class="menu__lista--elemento" href="foro.html">Foro</a></li>
+                    <li><a class="menu__lista--elemento" href="newsletter.html">Lanzamientos</a></li>
+                    <li><a class="menu__lista--elemento" href="contacto.html">Contacto y Newsletter</a></li>
                 </ul>
             </nav>
             </section>
-
-         <section>
-            <h2>Búsqueda</h2>
-            <search>
-                <label> ¿Que estás buscando?
-                    <input type="search" name="Barra_búsqueda" placeholder="Introduce tu búsqueda">
-                </label>
-                <button>BUSCAR</button>
-                </search>
-                <a href="contacto.html">Suscríbete a nuestra newsletter</a>
-
-         </section>
-
-         <section>
-            <h2>Contacto y RRSS</h2>
-               <address>
-
-                
-
-                <a href="https://x.com">X</a>
-                <a href="https://youtube.com">Youtube</a>
-                <a href="https://instagram.com">Instagram</a>
-                
-                <a href="contacto.html">Contáctanos</a>
-            </address>
-        </section>
-
+    
+             <section class="cabecera__buscar">
+                <h2 class="cabecera__titulo">Búsqueda</h2>
+                <search>
+                    <label class="cabecera__buscar--etiqueta"> ¿Que estás buscando?
+                        <input class="cabecera__buscar--barra__búsqueda" type="search" name="Barra_búsqueda" placeholder="Introduce tu búsqueda">
+                    </label>
+                    <button class="cabecera__buscar--botón__búsqueda">BUSCAR</button>
+                    </search>
+                    <a class="cabecera__buscar--enlace__newsletter" href="contacto.html">Suscríbete a nuestra newsletter</a>
+    
+            </section>
+    
+             <section class="cabecera__contactar">
+                <h2 class="cabecera__titulo">Contacto y RRSS</h2>
+                <address class="cabecera__contactar--métodos">
+    
+                    
+    
+                    <a class="cabecera__contactar--método" href="https://x.com">X</a>
+                    <a class="cabecera__contactar--método" href="https://youtube.com">Youtube</a>
+                    <a class="cabecera__contactar--método" href="https://instagram.com">Instagram</a> 
+                    <a class="cabecera__contactar--método" href="contacto.html">Contáctanos</a>
+                </address>
+            </section>
+    
         </header>
         <main>
                 <h1>Contacto y newsletter</h1>

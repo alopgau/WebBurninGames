@@ -3,17 +3,43 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    text-decoration: none;
 }
 /* Variables e importaciones */
 :root {
 --color-primario: #fdf0d5;
 --color-secundario: #c1121f;
+--color-terciario: #003049;
 }
 
 .cabecera {
-background: var(--color-secundario);
-display: flex;
+background: var(--color-primario);
+display: flex
+
 }
-.menu {
-    color: #ffffff;
+
+.cabecera__logo {
+width: 25%;
+height: auto;
+min-width: 20%;
+
+}
+.menu__lista {
+    list-style-type: none; 
+}
+.menu__lista--elemento {
+    color: var(--color-secundario);
+}
+.cabecera__titulo {
+color: var(--color-terciario);
+font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+.cabecera__buscar--enlace__newsletter{
+    color: var(--color-secundario);
+}
+.cabecera__contactar--método{
+    color: var(--color-secundario);
+}
+.cabecera__buscar--etiqueta {
+    color: var(--color-terciario);
 }
