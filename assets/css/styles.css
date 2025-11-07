@@ -32,13 +32,16 @@ min-width: 20%;
 }
 .cabecera__titulo {
 color: var(--color-terciario);
-font-family: Verdana, Geneva, Tahoma, sans-serif
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+text-align: center;
 }
 .cabecera__buscar--enlace__newsletter{
     color: var(--color-secundario);
 }
 .cabecera__contactar--método{
     color: var(--color-secundario);
+    display: block;
+    text-decoration: none;
 }
 .cabecera__buscar--etiqueta {
     color: var(--color-terciario);
