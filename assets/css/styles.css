@@ -4,6 +4,7 @@
     margin: 0;
     box-sizing: border-box;
     text-decoration: none;
+    font-style: normal;
 }
 /* Variables e importaciones */
 :root {
@@ -18,44 +19,64 @@ body {
 
 .cabecera {
 background: var(--color-primario);
-display: flex
-
+display: flex;
+justify-content: space-betwee;
+}
+.cabecera__logo {
+    width: 25%;
 }
 
-.cabecera__logo {
-width: 25%;
-height: auto;
-min-width: 20%;
-
+.logo {
+width: 100%;
 }
 .menu__lista {
     list-style-type: none; 
 }
 .menu__lista--elemento {
     color: var(--color-secundario);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
 }
 .cabecera__titulo {
 color: var(--color-terciario);
 font-family: Verdana, Geneva, Tahoma, sans-serif;
+text-align: center;
 }
 .cabecera__buscar--enlace__newsletter{
     color: var(--color-secundario);
+    display: block;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    
     
 }
 
-.cabecera__bu
+.cabecera__buscar {
+    width: 25%;
+}
 
 .cabecera__contactar {
+    width: 25%;
+}
+.cabecera__navegar {
+    width: 25%;
+}
+.cabecera__contactar--métodos {
     display: flex;
-    height: 100%;
+    justify-content: space-evenly;
 }
 .cabecera__contactar--método{
-    color: var(--color-secundario); 
+    color: var(--color-secundario);
     text-decoration: none;
-    align-content: end;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
 }   
 .cabecera__buscar--etiqueta {
-    color: var(--color-terciario);
+    color: var(--color-secundario);
+    text-align: center;
+    font-weight: bold;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .titulo__página {
    font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
@@ -70,10 +91,8 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 .titulo__juego {
 }
 .juego {
-    display: flex;
 }
 .portada__juego {
-    margin: 0, auto;
 }
 .fecha__juego {
     display: block;
