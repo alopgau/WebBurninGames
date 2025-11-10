@@ -10,6 +10,10 @@
 --color-primario: #fdf0d5;
 --color-secundario: #c1121f;
 --color-terciario: #003049;
+--color-blanco: #ffffff;
+}
+body {
+    background-color: var(--color-secundario);
 }
 
 .cabecera {
@@ -33,16 +37,49 @@ min-width: 20%;
 .cabecera__titulo {
 color: var(--color-terciario);
 font-family: Verdana, Geneva, Tahoma, sans-serif;
-text-align: center;
 }
 .cabecera__buscar--enlace__newsletter{
     color: var(--color-secundario);
+    
+}
+
+.cabecera__bu
+
+.cabecera__contactar {
+    display: flex;
+    height: 100%;
 }
 .cabecera__contactar--método{
-    color: var(--color-secundario);
-    display: block;
+    color: var(--color-secundario); 
     text-decoration: none;
-}
+    align-content: end;
+}   
 .cabecera__buscar--etiqueta {
     color: var(--color-terciario);
 }
+.titulo__página {
+   font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+   color: var(--color-blanco);
+   text-align: center;
+}
+.titulo__subseccion {
+ font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+   color: var(--color-blanco);
+   text-align: center;
+}
+.titulo__juego {
+}
+.juego {
+    display: flex;
+}
+.portada__juego {
+    margin: 0, auto;
+}
+.fecha__juego {
+    display: block;
+    text-align: center;
+}
+.plataforma__juego {
+    text-align: center;
+}
+
