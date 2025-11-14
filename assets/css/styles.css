@@ -90,7 +90,6 @@ text-align: center;
  font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
    color: var(--color-blanco);
    text-align: center;
-   padding: 10px;
 }
 .titulo__juego {
 text-align: center;
@@ -132,10 +131,22 @@ padding: 15px;
     flex-direction: column;
     align-items: center; 
     align-content: space-between;
+    gap: 25px;
 }
 .seccion__proximos {
     display: flex;
     flex-direction: column;
     align-content: space-between;
     align-items: center;
+    gap: 25px;
+    padding-bottom: 10px;
+}
+.titular__noticia {
+    text-align: center;
+    font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+   color: var(--color-blanco);
+   padding: 15px;
+}
+.head_noticia {
+
 }
