@@ -156,11 +156,26 @@ padding: 15px;
 }
 
 .titular__noticia {
-    text-align: center;
     font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-   color: var(--color-blanco);
+   color: var(--color-rosa);
    padding: 15px;
 }
-.head_noticia {
+.lead__noticia {
+    color: var(--color-secundario);
+    font-weight: bold;
+    font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 
 }
+.noticia {
+width: 50%;
+background-color: var(--color-primario);
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.imagen__noticia {
+width: 50%;
+
+}
+
+
