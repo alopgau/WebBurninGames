@@ -226,6 +226,9 @@ width: 50%;
     font-weight: bold;
     padding: 15px;
 }
+.seccion__ultimosmensajes {
+    height: 50%
+}
 
 .post__foro {
     display: grid
@@ -250,12 +253,14 @@ width: 10%;
     color: var(--color-blanco);
     font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
     font-weight: bold;
+    padding-bottom: 10px;
 }
 .titulo__tabla {
     background-color: var(--color-negro);
     color: var(--color-blanco);
     font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
     font-weight: bold;
+    width: 100%;
 
 }
 .encabezado__tabla {
@@ -264,11 +269,23 @@ width: 10%;
     font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
     font-weight: bold;
 }
-
+.contenedor__tabla {
+    padding: 8px
+}
+.tabla  {
+    background-color: var(--color-terciario);
+    width: 100%;
+}
 .celda__tabla {
     background-color: var(--color-primario);
     color: var(--color-secundario);
     font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
     font-weight: bold;
-    border: var(--color-terciario) solid 7px;
+    border: var(--color-terciario) solid 1px;
 }
+.barra__comentarios {
+border-radius: 5%;
+height: 20px;
+width: 50%;
+}
+
