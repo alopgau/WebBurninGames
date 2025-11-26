@@ -15,6 +15,8 @@
 --color-clickable: #FF70A6;
 --color-blanco: #ffffff;
 --color-negro: #000000;
+--color-verde: #2a4d14;
+--color-verde-claro: #56E39F
 }
 body {
     background-color: var(--color-secundario);
@@ -231,29 +233,45 @@ width: 50%;
 }
 
 .post__foro {
-    display: grid
+    display: grid;
+    grid-template-areas: 
+    "cabecera cabecera cabecera cabecera"
+    "mensaje mensaje mensaje ."
+    "adjunto adjunto adjunto .";
+    border: var(--color-terciario) solid 7px;
+    
 }
 
 .nombre__usuario {
+    
     color: var(--color-blanco);
     font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
     font-weight: bold;
+    grid-area: cabecera;
 }
 .perfil__usuario:first-of-type {
 background-color: var(--color-negro);
 width: 10%;
+grid-area: cabecera;
+border: var(--color-terciario) solid 4px;
+}
+.cabecera__post {
+    background-color: var(--color-verde);
+    grid-area: cabecera;
 }
 .fecha__publicacion {
-    color: var(--color-blanco);
     font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
     font-weight: bold;
     font-size: 0.8rem;
+    grid-area: cabecera;
+    color: var(--color-blanco);
 }
 .mensaje__foro {
-    color: var(--color-blanco);
     font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
     font-weight: bold;
-    padding-bottom: 10px;
+    padding: 10px;
+    grid-area: mensaje;
+    background-color: var(--color-verde-claro);
 }
 .titulo__tabla {
     background-color: var(--color-negro);
@@ -270,7 +288,9 @@ width: 10%;
     font-weight: bold;
 }
 .contenedor__tabla {
-    padding: 8px
+    padding: 8px;
+    grid-area: adjunto;
+    background-color: var(--color-verde-claro);
 }
 .tabla  {
     background-color: var(--color-terciario);
