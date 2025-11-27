@@ -16,7 +16,7 @@
 --color-blanco: #ffffff;
 --color-negro: #000000;
 --color-verde: #2a4d14;
---color-verde-claro: #56E39F
+--color-verde-claro: #56E39F;
 }
 body {
     background-color: var(--color-secundario);
@@ -221,16 +221,15 @@ width: 50%;
 
 }
 
-.bienvenida__foro {
+.introduccion__página {
     color: var(--color-blanco);
     font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
     text-align: center;
     font-weight: bold;
     padding: 15px;
 }
-.seccion__ultimosmensajes {
-    height: 50%
-}
+
+
 
 .post__foro {
     display: grid;
@@ -239,6 +238,7 @@ width: 50%;
     "mensaje mensaje mensaje ."
     "adjunto adjunto adjunto .";
     border: var(--color-terciario) solid 7px;
+    background-color: var(--color-verde-claro);
     
 }
 
@@ -271,7 +271,6 @@ border: var(--color-terciario) solid 4px;
     font-weight: bold;
     padding: 10px;
     grid-area: mensaje;
-    background-color: var(--color-verde-claro);
 }
 .titulo__tabla {
     background-color: var(--color-negro);
@@ -290,7 +289,6 @@ border: var(--color-terciario) solid 4px;
 .contenedor__tabla {
     padding: 8px;
     grid-area: adjunto;
-    background-color: var(--color-verde-claro);
 }
 .tabla  {
     background-color: var(--color-terciario);
@@ -305,7 +303,28 @@ border: var(--color-terciario) solid 4px;
 }
 .barra__comentarios {
 border-radius: 5%;
-height: 20px;
-width: 50%;
+height: 25px;
+display: inline;
+width: 100%;
+padding-top: 4px;
 }
+
+.integrante {
+  background-color: var(--color-primario);
+    width: 40%;
+    border: solid 10px var(--color-terciario);
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    
+}
+.nombre__integrante {
+    text-align: center;
+    font-family: "Press Start 2P", system-ui;
+    padding: 15px;
+}
+.seccion__nuestroequipo {
+gap: 25px;
+}
+
 

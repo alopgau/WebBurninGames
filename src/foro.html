@@ -49,7 +49,7 @@
     </header>
     <main>
 <h1 class="titulo__página">Foro</h1>
-<p class="bienvenida__foro">Bienvenido al foro de BurninGames! Aquí podrás interactuar con la comunidad compartiendo tus publicaciones</p>
+<p class="introduccion__página">Bienvenido al foro de BurninGames! Aquí podrás interactuar con la comunidad compartiendo tus publicaciones</p>
 <section class="seccion__destacados">
     <h2 class="titulo__subseccion">Mensajes destacados</h2>
         <article class="post__foro">
@@ -61,7 +61,7 @@
             <p class="mensaje__foro">Así se ve un mensaje de ejemplo</p>
         </article>
     </section>
-<section>
+<section class="seccion__ultimosmensajes">
     <h2 class="titulo__subseccion">Últimos mensajes</h2>
         <article class="post__foro">
             <header class="cabecera__post">
@@ -110,8 +110,8 @@
             </article>
         </article>
 </section>
-<form action="/send/" method="post">
-<textarea class="barra__comentarios" name="comentarios" id="comentarios" cols="30" rows="10" placeholder="Introduce tu comentario..."></textarea>
+<form action="/send/" class="barra__comentarios" method="post">
+    <textarea class="barra__comentarios" name="comentarios" id="comentarios" cols="30" rows="10" placeholder="Introduce tu comentario..."></textarea>
 <input type="file" name="adjuntar" id="adjuntar">
 </form>
     </main>
