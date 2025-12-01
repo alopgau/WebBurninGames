@@ -309,22 +309,51 @@ width: 100%;
 padding-top: 4px;
 }
 
+
 .integrante {
-   background-color: var(--color-primario);
-    width: 40%;
     border: solid 10px var(--color-terciario);
     border-radius: 5%;
+    max-width: 435px;
+    max-height: 435px;
     display: flex;
     flex-direction: column;
+    position: relative;
+    height: 50%;
 }
 .nombre__integrante {
     text-align: center;
     font-family: "Press Start 2P", system-ui;
-    padding: 15px;
+    padding: 1rem;
+    position: absolute;
+    bottom: 1.5rem;
+    font-size: 0.8rem;
+    background-color: var(--color-primario);
+    width: 100%;
+    z-index: 2;
 }
 .seccion__nuestroequipo {
-    gap: 25px;
+    gap: 1.3rem;
     display: flex;
     align-items: center;
-    
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.cargo__integrante {
+    text-align: center;
+    font-family: "Press Start 2P", system-ui;
+    padding: 1rem;
+    position: absolute;
+    bottom: 0rem;
+    font-size: 0.6rem;
+    background-color: var(--color-primario);
+    height: 3%; 
+    width: 100%;
+    z-index: 2;
+}
+.foto__integrante {
+overflow: hidden;
+z-index: 1;
+height: 100%;
+object-fit: cover;
+width: 100%;
 }
