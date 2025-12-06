@@ -241,6 +241,14 @@ body {
 
 }
 
+.link__noticia {
+    text-decoration: none;
+    color: inherit;
+}
+
+.link__noticia:hover {
+    color: var(--color-clickable);
+}
 .copyright {
     font-weight: bold;
     color: var(--color-secundario);
@@ -249,24 +257,19 @@ body {
 }
 
 .seccion__masrelevantes {
-    gap: 25px;
+    gap: 1.3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1.3rem;
 }
 
 .seccion__ultimasnoticias {
-    gap: 25px;
+    gap: 1.3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
-}
-
-.seccion__masrelevantes:last-child {
-    padding: 25px;
-
+    padding: 1.3rem;
 }
 
 .introduccion__página {
@@ -400,6 +403,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
+    padding: 1.3rem;
 }
 
 .cargo__integrante {
