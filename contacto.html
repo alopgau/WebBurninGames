@@ -42,30 +42,36 @@
                         <form action="/send/" method="post">
                         <label class="etiqueta__formulario"> Motivo de contacto:
                             <select name="motivos" id="motivos"> 
+                                <fieldset>
                                 <option value="1">Patrocinio o asunto empresarial</option>
                                 <option value="">Contratación como personal del equipo</option>
                                 <option value="">Contratación como redactor freelance</option>
                             </select>
                             </label>
-                        <label class="etiqueta__formulario"> Email:
-                               <input type="email" name="email" placeholder="Introduce tu email">
-                        </label>
-                        <label class="etiqueta__formulario">Nombre:
-                            <input type="text" name="nombre" placeholder="Introduce tu nombre">
-                        </label>
-                        <label class="etiqueta__formulario"> Asunto:
-                            <input type="text" name="asunto" placeholder="Introduce el asunto">
-                        </label>
-                        <label class="etiqueta__formulario"> Mensaje:
-                            <textarea name="mensaje" cols="30" rows="10" placeholder="Introduce tu mensaje"></textarea>
+
+                            <label class="etiqueta__formulario"> Email:
+                                <input type="email" name="email" placeholder="Introduce tu email" required>
+                            </label>
+                            <label class="etiqueta__formulario">Nombre:
+                                <input type="text" name="nombre" placeholder="Introduce tu nombre" required>
+                            </label>
+                            <label class="etiqueta__formulario"> Asunto:
+                                <input type="text" name="asunto" placeholder="Introduce el asunto" required>
+                            </label>
+                            <label class="etiqueta__formulario"> Mensaje:
+                                <textarea name="mensaje" cols="30" rows="10" placeholder="Introduce tu mensaje" required></textarea>
+                            </fieldset>
                         </label>
                         </form>
             </section>
                 <section>
+                    
                     <h2 class="titulo__subseccion">Newsletter</h2>
-                    <form action="/send/" method="post">
-                        <label class="etiqueta__formulario">Email:
-                            <input type="email" name="newsletter" placeholder="Introduce tu email">
+                    <fieldset>
+                        <form action="/send/" method="post">
+                            <label class="etiqueta__formulario">Email:
+                                <input type="email" name="newsletter" placeholder="Introduce tu email">
+                            </fieldset>
                         </label>
                     </form>
                 </section>

@@ -108,13 +108,14 @@ text-align: center;
 text-align: center;
 font-family: "Press Start 2P", system-ui;
 padding: 1rem;
+font-weight: bold;
 }
 .juego {
     background-color: var(--color-primario);
     width: 40%;
     border: solid 10px var(--color-terciario);
     border-radius: 5%;
-    box-shadow: 5px 5px var(--color-clickable);
+    box-shadow: 10px 10px var(--color-terciario);
     display: flex;
     flex-direction: column;
 
@@ -322,7 +323,7 @@ padding-top: 4px;
     width: 50%;
     border-radius: 5%;
     display: flex;
-    box-shadow: 5px 5px var(--color-clickable);
+    box-shadow: 10px 10px var(--color-terciario);
     flex-direction: column;
     position: relative;
 }
