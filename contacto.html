@@ -41,7 +41,7 @@
                         <h2 class="titulo__subseccion">Formulario de contacto</h2>
                         <form class="formulario" action="/send/" method="post">
                             <fieldset class="formulario__campos">
-                                <legend class="formulario__leyenda">¡Contacta con nosotros!</legend>
+                                <legend class="formulario__leyenda">¡Contáctanos!</legend>
                         
                                 <label class="formulario__etiqueta" for="motivos">Motivo de contacto:
                                     <select class="formulario__motivo" name="motivos" id="motivos"> 
@@ -63,24 +63,24 @@
                                     <input class="formulario__campo" type="text" name="asunto" id="asunto" placeholder="Introduce el asunto" required>
                                 </label>
                         
-                                <label class="formulario__etiqueta" for="mensaje">Mensaje:
+                                <label class="formulario__etiqueta--mensaje" for="mensaje">Mensaje:
                                     <textarea class="formulario__campo--mensaje" name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Introduce tu mensaje" required></textarea>
                                 </label>
                         
-                                <button class="formulario__boton" type="submit">Enviar</button>
+                                <button class="formulario__boton--grande" type="submit">Enviar</button>
                             </fieldset>
                         </form>
                         
             </section>
                 <section class="seccion__newsletter">
                     <h2 class="titulo__subseccion">Newsletter</h2>
+                    <form class="formulario" action="/send/" method="post">
                     <fieldset class="formulario__campos">
-                        <legend class="formulario__leyenda">Newsletter</legend>
-                        <form class="formulario" action="/send/" method="post">
-                            <label class="formulario__etiqueta" for="newsletter">Email:
-                                <input class="formulario__campo" type="email" name="newsletter" id="newsletter" placeholder="Introduce tu email" required>
+                        <legend class="formulario__leyenda">¡Suscríbete!</legend>
+                            <label class="formulario__etiqueta--newsletter" for="newsletter">Email:
+                                <input class="formulario__campo--newsletter" type="email" name="newsletter" id="newsletter" placeholder="Introduce tu email" required>
                             </label>
-                            <button class="formulario__boton" type="submit">Enviar</button>
+                            <button class="formulario__boton" type="submit">Suscribirse</button>
                         </form>
                     </fieldset>
                     </form>
