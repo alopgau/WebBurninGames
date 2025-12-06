@@ -199,6 +199,10 @@ flex-direction: column;
 align-items: center;
 border: solid 10px var(--color-terciario);
 border-radius: 5%;
+box-shadow: 10px 10px var(--color-terciario);
+}
+.noticia:hover {
+    box-shadow: none;
 }
 .imagen__noticia {
 width: 50%;

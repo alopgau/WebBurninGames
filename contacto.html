@@ -40,9 +40,10 @@
                     <section>
                         <h2 class="titulo__subseccion">Formulario de contacto</h2>
                         <form action="/send/" method="post">
+                        <fieldset>
+                        <legend>¡Contacta con nosotros!</legend>
                         <label class="etiqueta__formulario"> Motivo de contacto:
                             <select name="motivos" id="motivos"> 
-                                <fieldset>
                                 <option value="1">Patrocinio o asunto empresarial</option>
                                 <option value="">Contratación como personal del equipo</option>
                                 <option value="">Contratación como redactor freelance</option>
@@ -60,6 +61,7 @@
                             </label>
                             <label class="etiqueta__formulario"> Mensaje:
                                 <textarea name="mensaje" cols="30" rows="10" placeholder="Introduce tu mensaje" required></textarea>
+                                <button type="submit">Enviar</button>
                             </fieldset>
                         </label>
                         </form>
@@ -68,9 +70,11 @@
                     
                     <h2 class="titulo__subseccion">Newsletter</h2>
                     <fieldset>
+                        <legend>Newsletter</legend>
                         <form action="/send/" method="post">
                             <label class="etiqueta__formulario">Email:
                                 <input type="email" name="newsletter" placeholder="Introduce tu email">
+                                <button type="submit">Enviar</button>
                             </fieldset>
                         </label>
                     </form>
