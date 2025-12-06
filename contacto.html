@@ -39,44 +39,50 @@
                 <h1 class="titulo__página">Contacto y newsletter</h1>
                     <section>
                         <h2 class="titulo__subseccion">Formulario de contacto</h2>
-                        <form action="/send/" method="post">
-                        <fieldset>
-                        <legend>¡Contacta con nosotros!</legend>
-                        <label class="etiqueta__formulario"> Motivo de contacto:
-                            <select name="motivos" id="motivos"> 
-                                <option value="1">Patrocinio o asunto empresarial</option>
-                                <option value="">Contratación como personal del equipo</option>
-                                <option value="">Contratación como redactor freelance</option>
-                            </select>
-                            </label>
-
-                            <label class="etiqueta__formulario"> Email:
-                                <input type="email" name="email" placeholder="Introduce tu email" required>
-                            </label>
-                            <label class="etiqueta__formulario">Nombre:
-                                <input type="text" name="nombre" placeholder="Introduce tu nombre" required>
-                            </label>
-                            <label class="etiqueta__formulario"> Asunto:
-                                <input type="text" name="asunto" placeholder="Introduce el asunto" required>
-                            </label>
-                            <label class="etiqueta__formulario"> Mensaje:
-                                <textarea name="mensaje" cols="30" rows="10" placeholder="Introduce tu mensaje" required></textarea>
-                                <button type="submit">Enviar</button>
+                        <form class="formulario" action="/send/" method="post">
+                            <fieldset class="formulario__campos">
+                                <legend class="formulario__leyenda">¡Contacta con nosotros!</legend>
+                        
+                                <label class="formulario__etiqueta" for="motivos">Motivo de contacto:
+                                    <select class="formulario__motivo" name="motivos" id="motivos"> 
+                                        <option class="formulario__motivo--opcion" value="1">Patrocinio o asunto empresarial</option>
+                                        <option class="formulario__motivo--opcion" value="2">Contratación como personal del equipo</option>
+                                        <option class="formulario__motivo--opcion" value="3">Contratación como redactor freelance</option>
+                                    </select>
+                                </label>
+                        
+                                <label class="formulario__etiqueta" for="email">Email:
+                                    <input class="formulario__campo" type="email" name="email" id="email" placeholder="Introduce tu email" required>
+                                </label>
+                        
+                                <label class="formulario__etiqueta" for="nombre">Nombre:
+                                    <input class="formulario__campo" type="text" name="nombre" id="nombre" placeholder="Introduce tu nombre" required>
+                                </label>
+                        
+                                <label class="formulario__etiqueta" for="asunto">Asunto:
+                                    <input class="formulario__campo" type="text" name="asunto" id="asunto" placeholder="Introduce el asunto" required>
+                                </label>
+                        
+                                <label class="formulario__etiqueta" for="mensaje">Mensaje:
+                                    <textarea class="formulario__campo" name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Introduce tu mensaje" required></textarea>
+                                </label>
+                        
+                                <button class="formulario__boton" type="submit">Enviar</button>
                             </fieldset>
-                        </label>
                         </form>
+                        
             </section>
                 <section>
                     
-                    <h2 class="titulo__subseccion">Newsletter</h2>
-                    <fieldset>
-                        <legend>Newsletter</legend>
-                        <form action="/send/" method="post">
-                            <label class="etiqueta__formulario">Email:
-                                <input type="email" name="newsletter" placeholder="Introduce tu email">
-                                <button type="submit">Enviar</button>
-                            </fieldset>
-                        </label>
+                    <fieldset class="formulario__campos">
+                        <legend class="formulario__leyenda">Newsletter</legend>
+                        <form class="formulario" action="/send/" method="post">
+                            <label class="formulario__etiqueta" for="newsletter">Email:
+                                <input class="formulario__campo" type="email" name="newsletter" id="newsletter" placeholder="Introduce tu email" required>
+                            </label>
+                            <button class="formulario__boton" type="submit">Enviar</button>
+                        </form>
+                    </fieldset>
                     </form>
                 </section>
     </main>
