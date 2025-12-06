@@ -322,9 +322,13 @@ padding-top: 4px;
     width: 50%;
     border-radius: 5%;
     display: flex;
-     box-shadow: 5px 5px var(--color-clickable);
+    box-shadow: 5px 5px var(--color-clickable);
     flex-direction: column;
     position: relative;
+}
+.tarjeta_integrante {
+    height: 100%;
+    width: 100%;
 }
 .nombre__integrante {
     text-align: center;
@@ -358,7 +362,6 @@ padding-top: 4px;
 }
 .foto__integrante {
 overflow: hidden;
-z-index: 1;
 height: 100%;
 object-fit: cover;
 width: 100%;
