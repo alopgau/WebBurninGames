@@ -37,7 +37,7 @@
         </header>
         <main>
                 <h1 class="titulo__página">Contacto y newsletter</h1>
-                    <section>
+                    <section class="seccion__contacto">
                         <h2 class="titulo__subseccion">Formulario de contacto</h2>
                         <form class="formulario" action="/send/" method="post">
                             <fieldset class="formulario__campos">
@@ -64,7 +64,7 @@
                                 </label>
                         
                                 <label class="formulario__etiqueta" for="mensaje">Mensaje:
-                                    <textarea class="formulario__campo" name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Introduce tu mensaje" required></textarea>
+                                    <textarea class="formulario__campo--mensaje" name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Introduce tu mensaje" required></textarea>
                                 </label>
                         
                                 <button class="formulario__boton" type="submit">Enviar</button>
@@ -72,8 +72,8 @@
                         </form>
                         
             </section>
-                <section>
-                    
+                <section class="seccion__newsletter">
+                    <h2 class="titulo__subseccion">Newsletter</h2>
                     <fieldset class="formulario__campos">
                         <legend class="formulario__leyenda">Newsletter</legend>
                         <form class="formulario" action="/send/" method="post">

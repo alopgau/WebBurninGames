@@ -371,3 +371,34 @@ height: 100%;
 object-fit: cover;
 width: 100%;
 }
+.formulario__campos {
+    width: 50%;
+    background: var(--color-primario);
+    border: solid 10px var(--color-terciario);
+    box-shadow: 10px 10px var(--color-terciario);
+    padding: 1.3rem;
+    display: grid;
+    margin: 0 auto;
+    border-radius: 5%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3,0.5fr);
+}
+.formulario__leyenda {
+    text-align: center;
+    font-family: RMPro,-apple-sysem,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-weight: bold;
+    color: var(--color-secundario);
+
+}
+.formulario__campo {
+    background-color: var(--color-primario);
+    border: solid 5px var(--color-terciario);
+    font-family: RMPro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji; 
+
+}
+.formulario__campo--mensaje {
+    background-color: var(--color-primario);
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
