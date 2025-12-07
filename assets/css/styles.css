@@ -30,7 +30,7 @@ body {
     background: var(--color-primario);
     display: flex;
     justify-content: space-between;
-    box-shadow: 10px 10px var(--color-clickable);
+    box-shadow: 5px 5px var(--color-clickable);
 }
 
 .cabecera__logo {
@@ -191,6 +191,7 @@ body {
 
 .pie__de__página {
     background-color: var(--color-primario);
+    box-shadow: 5px 5px var(--color-clickable);
 }
 
 .pie__métodos__contacto--método {
