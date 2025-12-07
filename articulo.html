@@ -7,31 +7,32 @@
         <link rel="stylesheet" href="assets/css/styles.css">
     </head>
     <body>
-        <header class="cabecera">
+        <header class="cabecera__articulo">
             <img class="cabecera__logo" src="assets/images/logo.png" alt="Logo BurninGames">
             <section class="cabecera__navegar">
-                <h2 class="cabecera__titulo">Navegar a</h2>
-            <nav class="menu">
-                <ul class="menu__lista">
-                    <li><a class="menu__lista--elemento" href="index.html">Inicio</a></li>
-                    <li><a class="menu__lista--elemento" href="equipo.html">Nuestro equipo</a></li>
-                    <li><a class="menu__lista--elemento" href="foro.html">Foro</a></li>
-                    <li><a class="menu__lista--elemento" href="lanzamientos.html">Lanzamientos</a></li>
-                </ul>
-            </nav>
+                <h2 class="cabecera__articulo-titulo">Navegar a</h2>
+                <nav class="menu">
+                    <ul class="menu__lista__articulo">
+                        <li><a class="menu__lista__articulo--elemento" href="index.html">Inicio</a></li>
+                        <li><a class="menu__lista__articulo--elemento" href="equipo.html">Nuestro equipo</a></li>
+                        <li><a class="menu__lista__articulo--elemento" href="foro.html">Foro</a></li>
+                        <li><a class="menu__lista__articulo--elemento" href="lanzamientos.html">Lanzamientos</a></li>
+                    </ul>
+                </nav>
             </section>
-    
-             <section class="cabecera__buscar">
-                <h2 class="cabecera__titulo">Búsqueda</h2>
+        
+            <section class="cabecera__buscar">
+                <h2 class="cabecera__articulo-titulo">Búsqueda</h2>
                 <search>
                     <label class="cabecera__buscar--etiqueta"> ¿Que estás buscando?
                         <input class="cabecera__buscar--barra__búsqueda" type="search" name="Barra_búsqueda" placeholder="Introduce tu búsqueda">
                     </label>
                     <button class="cabecera__buscar--botón__búsqueda">Buscar</button>
-                    </search>
-                    <a class="cabecera__buscar--enlace__newsletter" href="contacto.html">Suscríbete a nuestra newsletter</a>
-    
+                </search>
+                <a class="cabecera__articulo-buscar--enlace__newsletter" href="contacto.html">Suscríbete a nuestra newsletter</a>
             </section>
+        </header>
+        
     
         </header>
         <main class="pagina__articulo">
@@ -40,9 +41,12 @@
                     <h1 class="titulo__articulo">Electronic Arts, comprada por un actor inesperado</h1>
                     <h2 class="subtitulo__articulo">Electronic Arts, responsable de videojuegos como EA Sports FC, acaba de ser adquirida por 55.000 millones de dólares. Entre sus compradores están Arabia Saudí y un yerno de Donald Trump.</h2>
                     <img class="imagen__articulo" src="assets/images/ea.jpg" alt="Logo de EA" title="Logo de EA">
-                    <p class="cuerpo__articulo">Redactado por Jaime Hernández</p>
-                    <img class="imagen__autor" src="assets/images/jim.jpg" alt="Foto de Jaime Hernández" title="Foto de Jaime Hernández">
-                    <time class="fecha__articulo" datetime="2025-10-26">26 de octubre de 2025</time>
+                    <figure class="info__articulo">
+                        <figcaption class="autor__articulo">Redactado por Jaime Hernández</figcaption>
+                        <img class="imagen__articulo--autor" src="assets/images/jim.jpg" alt="Foto de Jaime Hernández" title="Foto de Jaime Hernández">
+                        <time class="fecha__articulo" datetime="2025-10-26">26 de octubre de 2025</time>
+                    </figure>
+                    <p class="descripcion__autor">Paso más horas con un mando que con la cafetera. Informo sobre aquello que me apasiona, aunque sin tomármelo muy en serio</p>
                 </header>
             
                 <p class="cuerpo__articulo">Electronic Arts ha anunciado que <strong>la compañía ha sido adquirida por un consorcio de inversores.</strong></p>
@@ -76,21 +80,20 @@
             
                 
         </main>
-        <footer class="pie__de__página">
+        <footer class="pie__articulo">
             <address>
                 <ul>
-                    <li><a href="contacto.html" class="pie__métodos__contacto--método">Contacto</a></li>
-                    <li><a href="https://x.com" class="pie__métodos__contacto--método">X</a></li>
-                    <li><a href="https://youtube.com" class="pie__métodos__contacto--método">Youtube</a></li>
-                    <li><a href="https://instagram.com" class="pie__métodos__contacto--método">Instagram</a></li>
+                    <li><a href="contacto.html" class="pie__articulo__métodos__contacto-método">Contacto</a></li>
+                    <li><a href="https://x.com" class="pie__articulo__métodos__contacto-método">X</a></li>
+                    <li><a href="https://youtube.com" class="pie__articulo__métodos__contacto-método">Youtube</a></li>
+                    <li><a href="https://instagram.com" class="pie__articulo__métodos__contacto-método">Instagram</a></li>
                 </ul>
             </address>
         
             <ul>
-                <li><a href="avisolegal.html" class="pie__métodos__contacto--método">Aviso legal</a></li>
+                <li><a href="avisolegal.html" class="pie__articulo__métodos__contacto-método">Aviso legal</a></li>
             </ul>
         
-            <p class="copyright">© BurninGames 2025. All rights reserved</p>
-        </footer>    
-        </body> 
-    </html>
+            <p class="copyright__articulo">© BurninGames 2025. All rights reserved</p>
+        </footer>
+        
