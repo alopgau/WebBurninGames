@@ -613,6 +613,7 @@ color: var(--color-blanco);
     box-shadow: 5px 5px var(--color-clickable);
     grid-template-rows: 1fr;
     padding: 1rem;
+    min-width: 425px;
    
 }
 .cabecera__articulo__etiqueta {
@@ -630,6 +631,7 @@ color: var(--color-blanco);
     border-style: solid;
     border-color: var(--color-terciario);
     background-color: var(--color-primario);
+    min-width: 425px;
     
 
 }
@@ -698,6 +700,7 @@ grid-template-rows: repeat(2,1fr)
 
 .pie__articulo {
     box-shadow: 10px 10px var(--color-clickable);
+    min-width: 425px;
 }
 
 
@@ -769,13 +772,20 @@ grid-template-rows: repeat(2,1fr)
         width: 100%;
     }
     .nombre__integrante, .cargo__integrante {
-        font-size: 0.4rem;
         text-align: center;
 }
 }
 @media screen and (max-width: 768px) {
     .juego {
         width: 100%;
+    }
+    
+}
+@media screen and (max-width: 1440px) {
+    .fecha__articulo {
+        padding: 1rem;
+        font-size: 0.7rem;
+    
     }
     
 }
