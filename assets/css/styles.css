@@ -805,6 +805,9 @@ grid-template-rows: repeat(2,1fr)
 
     
 }
+    .formulario__motivo {
+        width: 100%;
+    }
 }
 @media screen and (max-width: 400px) {
     .formulario__campo {
@@ -812,5 +815,10 @@ grid-template-rows: repeat(2,1fr)
     }
     .formulario__motivo {
         width: 95%;
+    }
+}
+@media screen and (max-width: 400px) {
+    .cabecera__menu__lista {
+        font-size: 0.9rem;
     }
 }
