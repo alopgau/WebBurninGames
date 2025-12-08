@@ -411,7 +411,7 @@ body {
 .cargo__integrante {
     text-align: center;
     font-family: "Press Start 2P", system-ui;
-    padding: 1rem;
+    padding: 1.3rem;
     position: absolute;
     bottom: 0rem;
     font-size: 0.6rem;
@@ -720,4 +720,18 @@ grid-template-rows: repeat(2,1fr)
     .lead__noticia {
         font-size: 1.2rem;
     }   
+}
+@media screen and (max-width:800px) {
+    .integrante {
+        width: 60%
+    
+}
+    .nombre__integrante {
+        height: 25%;
+        padding: 1rem;
+    }
+    .cargo__integrante {
+        padding: 1rem;
+        height: 12.5%;
+    }
 }
