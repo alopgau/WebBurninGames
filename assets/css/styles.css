@@ -728,9 +728,9 @@ grid-template-rows: repeat(2,1fr)
 }
 @media screen and (max-width:800px) {
     .integrante {
-        width: 60%
+        width: 100%
     
-}
+    }
     .nombre__integrante {
         height: 25%;
         padding: 1rem;
@@ -739,8 +739,8 @@ grid-template-rows: repeat(2,1fr)
         padding: 1rem;
         height: 12.5%;
     }
-}
-@media screen and (max-width:800px) {
+
+
     .perfil__usuario:first-of-type {
         width: 100%;
         border: none;
@@ -763,4 +763,13 @@ grid-template-rows: repeat(2,1fr)
     .tabla {
         transform: translateX(-2.5%);
     }
+}
+@media screen and (max-width:426px) {
+    .integrante {
+        width: 100%;
+    }
+    .nombre__integrante, .cargo__integrante {
+        font-size: 0.4rem;
+        text-align: center;
+}
 }
