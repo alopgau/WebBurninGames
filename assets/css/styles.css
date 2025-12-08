@@ -185,6 +185,12 @@ body {
     background-color: var(--color-primario);
     box-shadow: 5px 5px var(--color-clickable);
 }
+.pie__métodos__contacto {
+        display: flex;
+        justify-content: space-around;
+        list-style-type: none;
+        padding: 1rem;
+}
 
 .pie__métodos__contacto--método {
     color: var(--color-secundario);
@@ -713,15 +719,5 @@ grid-template-rows: repeat(2,1fr)
     }
     .lead__noticia {
         font-size: 1.2rem;
-    }
-
-    
-}
-@media screen and (max-width: 700px) {
-    .pie__métodos__contacto {
-        display: flex;
-        justify-content: space-around;
-        list-style-type: none;
-        padding: 1rem;
-    }
+    }   
 }
