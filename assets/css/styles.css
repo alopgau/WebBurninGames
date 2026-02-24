@@ -835,16 +835,11 @@ body {
         --color-tabla: #000;
         --color-tabla-claro: #dee2e6; 
     }
-    .lead__noticia, .copyright, .cabecera__menu__lista--elemento, .pie__articulo__métodos__contacto-método, .cabecera__articulo__etiqueta, .pie__métodos__contacto--método, .cabecera__etiqueta, .cabecera__articulo__etiqueta, .cabecera__botón__búsqueda, .titulo__juego, .fecha__juego, .plataforma__juego, .nombre__integrante, .cargo__integrante, .titulo__articulo, .subtitulo__articulo, .autor__articulo, .descripcion__autor, .cuerpo__articulo, .fecha__articulo, .celda__tabla, .formulario__boton, .formulario__etiqueta, .formulario__boton--grande, .formulario__motivo--opcion, .formulario__leyenda, .formulario__campo--mensaje::placeholder, .formulario__campo::placeholder, .formulario__motivo {
+    .lead__noticia, .copyright, .cabecera__menu__lista--elemento, .pie__articulo__métodos__contacto-método, .cabecera__articulo__etiqueta, .pie__métodos__contacto--método, .cabecera__etiqueta, .cabecera__articulo__etiqueta, .cabecera__botón__búsqueda, .titulo__juego, .fecha__juego, .plataforma__juego, .nombre__integrante, .cargo__integrante, .titulo__articulo, .subtitulo__articulo, .autor__articulo, .descripcion__autor, .cuerpo__articulo, .fecha__articulo, .celda__tabla, .formulario__boton, .formulario__etiqueta, .formulario__boton--grande, .formulario__motivo--opcion, .formulario__leyenda, .formulario__campo--mensaje::placeholder, .formulario__campo::placeholder, .formulario__motivo, .formulario__campo--newsletter::placeholder, .formulario__etiqueta--mensaje, .formulario__etiqueta--newsletter {
         color: var(--color-letras);
     }
 
     .titulo__tabla {
         color: var(--color-secundario);
     }
-    .formulario__motivo--opcion:hover {
-        background: var(--color-letras);
-        color: var(--color-secundario);
-    }
-
 }
