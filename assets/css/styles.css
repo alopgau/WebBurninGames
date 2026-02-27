@@ -30,13 +30,34 @@ body {
 .cabecera {
     background: var(--color-primario);
     box-shadow: 5px 5px var(--color-clickable);
-
-    
 }
 
 
 .logo {
+    width: 70%;
+
+}
+.cabecera__otros__elementos {
+    display: flex;
+    justify-content: baseline;
+    max-height: 30px;
+}
+.luna {
+    color: var(--color-letras);
+    display: none;
+    width: 5%;
+    cursor: pointer;
+    max-width: 30px;
+    max-height: 30px;
+
+
+}
+.sol {
+    color: var(--color-secundario);
+    cursor: pointer;
     width: 50%;
+    max-width: 30px;
+    max-height: 30px;
 
 }
 .boton__menú__hamburguesa {
@@ -862,4 +883,11 @@ body {
         color: var(--color-secundario);
     background-color: var(--color-letras);
     }
+    .luna {
+        display: block;
+
+}
+.sol {
+    display: none;
+}
 }
