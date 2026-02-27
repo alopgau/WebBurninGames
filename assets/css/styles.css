@@ -503,7 +503,7 @@ body {
     border: solid 5px var(--color-terciario);
     font-family: RMPro, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     box-shadow: 5px 5px var(--color-terciario);
-    border-radius: 5%;
+    border-radius: 2rem;
     height: 100%;
     display: block;
 }
@@ -517,6 +517,7 @@ body {
     color: var(--color-secundario);
     grid-column: span 2;
     font-size: 1.5rem;
+    border-radius: 2rem;
 }
 .formulario__boton--grande:hover {
     box-shadow: none;
@@ -528,7 +529,7 @@ body {
     border: solid 10px var(--color-terciario);
     width: 100%;
     box-shadow: 10px 10px var(--color-terciario);
-    border-radius: 5%;
+    border-radius: 1rem;
     
     
 }
@@ -555,10 +556,12 @@ body {
     grid-row-end: 5;
     grid-column: 1/-1;
     font-size: 1.3rem;
+    border-radius: 2rem;
 }
-.formulario__boton:hover {
+.formulario__boton:hover, .formulario__boton--grande:hover {
     box-shadow: none;
-    color: var(--color-clickable);
+    color: var(--color-secundario);
+    background-color: var(--color-letras);
 }
 .formulario__etiqueta {
     height: 50%;
@@ -575,7 +578,7 @@ body {
     box-shadow: 10px 10px var(--color-terciario);
     border: solid 10px var(--color-terciario);
     height: 100%;
-    border-radius: 10%;
+    border-radius: 2rem;
     
 }
 .formulario__motivo--opcion:hover {
@@ -611,7 +614,7 @@ body {
     border: solid 5px var(--color-terciario);
     font-family: RMPro, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     box-shadow: 5px 5px var(--color-terciario);
-    border-radius: 5%;
+    border-radius: 2rem;
     height: 100%;
     width: 100%;
     
@@ -799,6 +802,10 @@ body {
     .boton__menú__hamburguesa {
         display: block;
     }
+    .cabecera__menu__lista {
+        display: none;
+    }
+
     
 }
 @media screen and (max-width: 1440px) {
