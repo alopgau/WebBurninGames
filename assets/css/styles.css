@@ -39,6 +39,13 @@ body {
     width: 50%;
 
 }
+.boton__menú__hamburguesa {
+ height: fit-content;
+ display: none;
+ background: transparent;
+ color: var(--color-letras);
+ cursor: pointer;
+}
 .cabecera__logo {
     display: flex;
     justify-content: center;
@@ -788,6 +795,9 @@ body {
 @media screen and (max-width: 768px) {
     .juego {
         width: 100%;
+    }
+    .boton__menú__hamburguesa {
+        display: block;
     }
     
 }

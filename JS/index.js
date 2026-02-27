@@ -1,3 +1,4 @@
+
 const juegos = document.querySelectorAll(".juego")
 for (let index = 0; index < juegos.length; index++) {
      juegos[index].setAttribute("id",index);
