@@ -519,10 +519,6 @@ body {
     font-size: 1.5rem;
     border-radius: 2rem;
 }
-.formulario__boton--grande:hover {
-    box-shadow: none;
-    color: var(--color-clickable);
-}
 
 .formulario__campo--mensaje {
     background-color: var(--color-primario);
@@ -560,8 +556,9 @@ body {
 }
 .formulario__boton:hover, .formulario__boton--grande:hover {
     box-shadow: none;
-    color: var(--color-secundario);
-    background-color: var(--color-letras);
+    color: var(--color-blanco);
+    background-color: var(--color-clickable);
+    border: var(--color-clickable);
 }
 .formulario__etiqueta {
     height: 50%;
@@ -860,5 +857,9 @@ body {
 
     .titulo__tabla {
         color: var(--color-secundario);
+    }
+    .formulario__boton:hover, .formulario__boton--grande:hover {
+        color: var(--color-secundario);
+    background-color: var(--color-letras);
     }
 }
