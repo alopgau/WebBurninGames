@@ -29,23 +29,25 @@ body {
 }
 .cabecera {
     background: var(--color-primario);
-    display: grid;
+    display: flex;
     box-shadow: 5px 5px var(--color-clickable);
-    grid-template-rows: 1fr;
-    padding: 1rem;
+    align-content: center;
+    justify-content: center;
+
     
 }
 
 
 .logo {
-    width: 100%;
-    grid-column: 1 / -1;
+    width: 33.3%;
+
 }
 
 .cabecera__menu__lista {
     list-style-type: none;
     justify-content: space-around;
     display: flex;
+    padding: 2rem;
 }
 
 .cabecera__menu__lista--elemento {
