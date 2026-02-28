@@ -177,6 +177,7 @@ body {
     flex-direction: column;
     cursor: pointer;
     perspective: 500px;
+    transition: transform .3s ease .2s
     
 }
 
@@ -279,6 +280,7 @@ body {
     border: solid 10px var(--color-terciario);
     border-radius: 5%;
     box-shadow: 10px 10px var(--color-terciario);
+    transition: transform .3s ease .2s
 }
 
 .noticia:hover {
@@ -542,6 +544,7 @@ body {
     grid-column: span 2;
     font-size: 1.5rem;
     border-radius: 2rem;
+    transition: all .3s ease .2s ;
 }
 
 .formulario__campo--mensaje {
@@ -577,6 +580,7 @@ body {
     grid-column: 1/-1;
     font-size: 1.3rem;
     border-radius: 2rem;
+    transition: all .3s ease .2s ;
 }
 .formulario__boton:hover, .formulario__boton--grande:hover {
     box-shadow: none;
