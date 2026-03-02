@@ -21,6 +21,7 @@
     --color-tabla: #2a4d14;
     --color-tabla-claro: #56E39F;
     --color-clickable__articulo: #e0e0e0;
+    --color-primario__transparente: #fdf0d5b2
 }
 
 
@@ -35,7 +36,7 @@ body {
 
 .logo {
     width: 15%;
-
+    
 }
 .cabecera__otros__elementos {
     position: absolute;
@@ -43,6 +44,12 @@ body {
     justify-content: baseline;
     max-height: 30px;
 }
+.cabecera--semitransparente {
+    background: var(--color-primario__transparente);
+    box-shadow: 5px 5px var(--color-primario);
+}
+
+
 .luna {
     color: var(--color-letras);
     display: none;
@@ -86,7 +93,7 @@ body {
     z-index: 1;
     background-color: var(--color-primario);
     box-shadow: 5px 5px var(--color-clickable);
-    height: 100vh;
+    height: 100dvh;
     
 }
 .menu__desplegable__boton__atras {
@@ -922,6 +929,7 @@ body {
         --color-clickable: #adb5bd;
         --color-tabla: #000;
         --color-tabla-claro: #dee2e6; 
+        --color-primario__transparente: #212529b2
     }
     .lead__noticia, .copyright, .cabecera__menu__lista--elemento, .pie__articulo__métodos__contacto-método, .cabecera__articulo__etiqueta, .pie__métodos__contacto--método, .cabecera__etiqueta, .cabecera__articulo__etiqueta, .cabecera__botón__búsqueda, .titulo__juego, .fecha__juego, .plataforma__juego, .nombre__integrante, .cargo__integrante, .titulo__articulo, .subtitulo__articulo, .autor__articulo, .descripcion__autor, .cuerpo__articulo, .fecha__articulo, .celda__tabla, .formulario__boton, .formulario__etiqueta, .formulario__boton--grande, .formulario__motivo--opcion, .formulario__leyenda, .formulario__campo--mensaje::placeholder, .formulario__campo::placeholder, .formulario__motivo, .formulario__campo--newsletter::placeholder, .formulario__etiqueta--mensaje, .formulario__etiqueta--newsletter, .formulario__campo--mensaje, .formulario__campo,.formulario__campo--newsletter,.cabecera__barra__búsqueda, .barra__comentarios::placeholder, .cabecera__barra__búsqueda::placeholder {
         color: var(--color-letras);

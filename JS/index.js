@@ -43,37 +43,29 @@ const MenuHamburguesa = () => {
     const desplegable = document.querySelector(".oculto")
     const main = document.querySelector("main")
     const cabecera = document.querySelector(".cabecera")
-    const elementosCabecera = cabecera.children
+    const seccionLogo = document.querySelector(".cabecera__logo")
     boton.addEventListener("click", () => {
-        if (desplegable.classList.contains("oculto")) {
             desplegable.classList.replace("oculto", "menu__desplegable--desplegado")
             boton.classList.replace("boton__menú__hamburguesa","oculto")
             luna.classList.replace("luna","oculto")
-            cabecera.classList.toggle("semitransparente")
             main.classList.toggle("semitransparente")
+            seccionLogo.classList.toggle("semitransparente")
             document.body.style.overflow = "hidden"
-            for (let index = 1; index < elementosCabecera.length; index++) {
-               const element = array[index];
-               element.classList.toggle("semitransparente")
-               
-            }
+            cabecera.classList.replace("cabecera","cabecera--semitransparente")
+            
         }
-    })
+    )
     const botonAtrasHamburguesa = document.querySelector(".menu__desplegable__boton__atras")
     botonAtrasHamburguesa.addEventListener("click", () => {
-        cabecera.classList.toggle("semitransparente")
         main.classList.toggle("semitransparente")
         document.body.style.overflow = ""
         desplegable.classList.replace("menu__desplegable--desplegado","oculto")
         luna.classList.replace("oculto","luna")
-        boton.classList.replace("oculto", "boton__menú__hamburguesa")
-        for (let index = 1; index < elementosCabecera.length; index++) {
-           const element = array[index];
-           element.classList.toggle("semitransparente")
-        
+        seccionLogo.classList.toggle("semitransparente")
+            boton.classList.replace("oculto", "boton__menú__hamburguesa")
+            cabecera.classList.replace("cabecera--semitransparente","cabecera")
+})}
 
-    }})
-}
 
 function main() {
     HrefJuegos()
