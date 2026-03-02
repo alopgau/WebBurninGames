@@ -39,12 +39,13 @@ const HrefJuegos = () => {
                 }
 const MenuHamburguesa = () => {
     const boton = document.querySelector(".boton__menú__hamburguesa")
-    const desplegable = document.querySelector(".menu__desplegable")
+    const desplegable = document.querySelector(".oculto")
     boton.addEventListener("click", () => {
-        if (desplegable.classList.contains("menu__desplegable")) {
-            desplegable.classList.replace("menu__desplegable", "menu__desplegable--desplegado")
+        if (desplegable.classList.contains("oculto")) {
+            desplegable.classList.replace("oculto", "menu__desplegable--desplegado")
+            
         } else {
-            desplegable.classList.replace("menu__desplegable--desplegado", "menu__desplegable")
+            desplegable.classList.replace("menu__desplegable--desplegado", "oculto")
 
         } 
     })
