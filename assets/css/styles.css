@@ -46,7 +46,7 @@ body {
 .luna {
     color: var(--color-letras);
     display: none;
-    width: 5%;
+    width: 60%;
     cursor: pointer;
     max-width: 30px;
     max-height: 30px;
@@ -77,16 +77,20 @@ body {
 .oculto {
     display: none;
 
-
 }
 .menu__desplegable--desplegado {
     position: relative;
     z-index: 1;
     background-color: var(--color-secundario);
-    height: fit-content;
-    width: 30vw;
-
-
+    height: 100vh;
+}
+.menu__desplegable__boton__atras {
+    color: var(--color-blanco);
+    cursor: pointer;
+}
+.menu__desplegable__boton__atras {
+    transform: scale3d(1.05,1,1);
+    transition: transform .3 ease .2 ease;
 }
 
 .cabecera__menu__lista {
@@ -94,12 +98,6 @@ body {
     justify-content: space-around;
     display: flex;
     padding: 1.25rem;
-}
-.cabecera__menu__desplegable__lista {
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
 }
 
 .cabecera__menu__lista--elemento {

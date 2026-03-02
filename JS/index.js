@@ -39,17 +39,27 @@ const HrefJuegos = () => {
                 }
 const MenuHamburguesa = () => {
     const boton = document.querySelector(".boton__menú__hamburguesa")
+    const luna = document.querySelector(".luna")
     const desplegable = document.querySelector(".oculto")
     boton.addEventListener("click", () => {
         if (desplegable.classList.contains("oculto")) {
             desplegable.classList.replace("oculto", "menu__desplegable--desplegado")
-            
-        } else {
-            desplegable.classList.replace("menu__desplegable--desplegado", "oculto")
+            boton.classList.replace("boton__menú__hamburguesa","oculto")
+            luna.classList.replace("luna","oculto")
+            document.body.style.overflow = "hidden"
+        }
+    })
+    const botonAtrasHamburguesa = document.querySelector(".menu__desplegable__boton__atras")
+    botonAtrasHamburguesa.addEventListener("click", () => {
+        document.body.style.overflow = ""
+        desplegable.classList.replace("menu__desplegable--desplegado","oculto")
+        luna.classList.replace("oculto","luna")
+        boton.classList.replace("oculto", "boton__menú__hamburguesa")
+        
 
-        } 
     })
 }
+
 function main() {
     HrefJuegos()
     MenuHamburguesa()
