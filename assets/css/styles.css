@@ -34,7 +34,7 @@ body {
 
 
 .logo {
-    width: 30%;
+    width: 15%;
 
 }
 .cabecera__otros__elementos {
@@ -72,6 +72,7 @@ body {
     display: flex;
     justify-content: center;
     align-content: center;
+    height: 10%;
 }
 .oculto {
     display: none;
