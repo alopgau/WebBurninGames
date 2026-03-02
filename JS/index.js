@@ -41,7 +41,12 @@ const MenuHamburguesa = () => {
     const boton = document.querySelector(".boton__menú__hamburguesa")
     const desplegable = document.querySelector(".menu__desplegable")
     boton.addEventListener("click", () => {
-        desplegable.classList.toggle("menu__desplegable")
+        if (desplegable.classList.contains("menu__desplegable")) {
+            desplegable.classList.replace("menu__desplegable", "menu__desplegable--desplegado")
+        } else {
+            desplegable.classList.replace("menu__desplegable--desplegado", "menu__desplegable")
+
+        } 
     })
 }
 function main() {
