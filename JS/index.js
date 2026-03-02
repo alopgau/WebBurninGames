@@ -37,8 +37,16 @@ function HrefJuegos() {
                     cargarHrefJuego(juego)
                     }
                 }
+function MenuHamburguesa() {
+    const boton = document.querySelector(".boton__menú__hamburguesa")
+    const desplegable = document.querySelector(".menu__desplegable")
+    boton.addEventListener("click", () => {
+        desplegable.classList.toggle(".menu__desplegable")
+    })
+}
 function main() {
     HrefJuegos()
+    MenuHamburguesa()
 }
 main()
 

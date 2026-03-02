@@ -34,7 +34,7 @@ body {
 
 
 .logo {
-    width: 70%;
+    width: 30%;
 
 }
 .cabecera__otros__elementos {
@@ -71,6 +71,9 @@ body {
     display: flex;
     justify-content: center;
     align-content: center;
+}
+.menu__desplegable {
+    display: none;
 }
 
 .cabecera__menu__lista {
