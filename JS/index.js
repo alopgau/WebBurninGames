@@ -41,23 +41,38 @@ const MenuHamburguesa = () => {
     const boton = document.querySelector(".boton__menú__hamburguesa")
     const luna = document.querySelector(".luna")
     const desplegable = document.querySelector(".oculto")
+    const main = document.querySelector("main")
+    const cabecera = document.querySelector(".cabecera")
+    const elementosCabecera = cabecera.children
     boton.addEventListener("click", () => {
         if (desplegable.classList.contains("oculto")) {
             desplegable.classList.replace("oculto", "menu__desplegable--desplegado")
             boton.classList.replace("boton__menú__hamburguesa","oculto")
             luna.classList.replace("luna","oculto")
+            cabecera.classList.toggle("semitransparente")
+            main.classList.toggle("semitransparente")
             document.body.style.overflow = "hidden"
+            for (let index = 1; index < elementosCabecera.length; index++) {
+               const element = array[index];
+               element.classList.toggle("semitransparente")
+               
+            }
         }
     })
     const botonAtrasHamburguesa = document.querySelector(".menu__desplegable__boton__atras")
     botonAtrasHamburguesa.addEventListener("click", () => {
+        cabecera.classList.toggle("semitransparente")
+        main.classList.toggle("semitransparente")
         document.body.style.overflow = ""
         desplegable.classList.replace("menu__desplegable--desplegado","oculto")
         luna.classList.replace("oculto","luna")
         boton.classList.replace("oculto", "boton__menú__hamburguesa")
+        for (let index = 1; index < elementosCabecera.length; index++) {
+           const element = array[index];
+           element.classList.toggle("semitransparente")
         
 
-    })
+    }})
 }
 
 function main() {

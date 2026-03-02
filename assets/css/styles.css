@@ -78,11 +78,16 @@ body {
     display: none;
 
 }
+.semitransparente {
+    opacity: 70%;
+}
 .menu__desplegable--desplegado {
     position: relative;
     z-index: 1;
-    background-color: var(--color-secundario);
+    background-color: var(--color-primario);
+    box-shadow: 5px 5px var(--color-clickable);
     height: 100vh;
+    
 }
 .menu__desplegable__boton__atras {
     color: var(--color-blanco);
@@ -937,3 +942,4 @@ body {
     display: none;
 }
 }
+
