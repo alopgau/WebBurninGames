@@ -1,4 +1,4 @@
-function cargarHrefJuego(juego) {
+const cargarHrefJuego = (juego) => {
     switch (juego.getAttribute("id")) {
         case "0":
             juego.addEventListener("click", () => {
@@ -28,7 +28,7 @@ function cargarHrefJuego(juego) {
                         
                     }
 
-function HrefJuegos() {
+const HrefJuegos = () => {
     const juegos = document.querySelectorAll(".juego")
     for (let index = 0; index < juegos.length; index++) {
         juegos[index].setAttribute("id",index);
@@ -37,7 +37,7 @@ function HrefJuegos() {
                     cargarHrefJuego(juego)
                     }
                 }
-function MenuHamburguesa() {
+const MenuHamburguesa = () => {
     const boton = document.querySelector(".boton__menú__hamburguesa")
     const desplegable = document.querySelector(".menu__desplegable")
     boton.addEventListener("click", () => {
