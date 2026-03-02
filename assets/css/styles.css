@@ -38,6 +38,7 @@ body {
 
 }
 .cabecera__otros__elementos {
+    position: absolute;
     display: flex;
     justify-content: baseline;
     max-height: 30px;
@@ -74,6 +75,9 @@ body {
 }
 .menu__desplegable {
     display: none;
+    position: absolute;
+    z-index: 1;
+
 }
 
 .cabecera__menu__lista {
