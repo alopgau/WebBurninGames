@@ -28,7 +28,7 @@ const cargarHrefJuego = (juego) => {
                         
                     }
 
-const HrefJuegos = () => {
+const hrefJuegos = () => {
     const juegos = document.querySelectorAll(".juego")
     for (let index = 0; index < juegos.length; index++) {
         juegos[index].setAttribute("id",index);
@@ -37,7 +37,7 @@ const HrefJuegos = () => {
                     cargarHrefJuego(juego)
                     }
                 }
-const MenuHamburguesa = () => {
+const menuHamburguesa = () => {
     const boton = document.querySelector(".boton__menú__hamburguesa")
     const luna = document.querySelector(".luna")
     const desplegable = document.querySelector(".oculto")
@@ -66,15 +66,27 @@ botonAtrasHamburguesa.addEventListener("click", () => {
     cabecera.classList.replace("cabecera--semitransparente","cabecera")
 })}
 
+AnadirEventoSwitchModo = (elemento) => {
+elemento.addEventListener("click", () => {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        elemento.classList.replace("modo__oscuro")
+    } else {
+        elemento.classList.replace("modo__claro")
+      }
+})
+}
+
 const SwitchModo = ()  => {
     const luna = document.querySelector(".luna")
     const sol = document.querySelector(".sol")
-    
+    AnadirEventoSwitchModo(luna)
+    AnadirEventoSwitchModo(sol)
+
 }
 
 function main() {
-    HrefJuegos()
-    MenuHamburguesa()
+    hrefJuegos()
+    menuHamburguesa()
     SwitchModo()
 }
 main()
