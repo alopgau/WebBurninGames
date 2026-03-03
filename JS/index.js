@@ -45,31 +45,37 @@ const MenuHamburguesa = () => {
     const cabecera = document.querySelector(".cabecera")
     const seccionLogo = document.querySelector(".cabecera__logo")
     boton.addEventListener("click", () => {
-            desplegable.classList.replace("oculto", "menu__desplegable--desplegado")
-            boton.classList.replace("boton__menú__hamburguesa","oculto")
-            luna.classList.replace("luna","oculto")
-            main.classList.toggle("semitransparente")
-            seccionLogo.classList.toggle("semitransparente")
-            document.body.style.overflow = "hidden"
-            cabecera.classList.replace("cabecera","cabecera--semitransparente")
-            
-        }
-    )
-    const botonAtrasHamburguesa = document.querySelector(".menu__desplegable__boton__atras")
-    botonAtrasHamburguesa.addEventListener("click", () => {
+        desplegable.classList.replace("oculto", "menu__desplegable--desplegado")
+        boton.classList.replace("boton__menú__hamburguesa","oculto")
+        luna.classList.replace("luna","oculto")
         main.classList.toggle("semitransparente")
-        document.body.style.overflow = ""
-        desplegable.classList.replace("menu__desplegable--desplegado","oculto")
-        luna.classList.replace("oculto","luna")
         seccionLogo.classList.toggle("semitransparente")
-            boton.classList.replace("oculto", "boton__menú__hamburguesa")
-            cabecera.classList.replace("cabecera--semitransparente","cabecera")
+        document.body.style.overflow = "hidden"
+        cabecera.classList.replace("cabecera","cabecera--semitransparente")
+        
+    }
+)
+const botonAtrasHamburguesa = document.querySelector(".menu__desplegable__boton__atras")
+botonAtrasHamburguesa.addEventListener("click", () => {
+    main.classList.toggle("semitransparente")
+    document.body.style.overflow = ""
+    desplegable.classList.replace("menu__desplegable--desplegado","oculto")
+    luna.classList.replace("oculto","luna")
+    seccionLogo.classList.toggle("semitransparente")
+    boton.classList.replace("oculto", "boton__menú__hamburguesa")
+    cabecera.classList.replace("cabecera--semitransparente","cabecera")
 })}
 
+const SwitchModo = ()  => {
+    const luna = document.querySelector(".luna")
+    const sol = document.querySelector(".sol")
+    
+}
 
 function main() {
     HrefJuegos()
     MenuHamburguesa()
+    SwitchModo()
 }
 main()
 

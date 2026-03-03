@@ -36,7 +36,7 @@ body {
 
 .logo {
     width: 15%;
-    
+    min-width: 95.4px;
 }
 .cabecera__otros__elementos {
     position: absolute;
@@ -909,6 +909,9 @@ body {
     }
     .menu__desplegable--desplegado {
         width: 100vw;
+    }
+    .logo {
+        max-height: 96.67px;
     }
 }
 @media screen and (max-width: 400px) {
