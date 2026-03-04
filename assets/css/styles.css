@@ -53,7 +53,7 @@ body {
 .luna {
     color: var(--color-letras);
     display: none;
-    width: 60%;
+    width: 100%;
     cursor: pointer;
     max-width: 30px;
     max-height: 30px;
@@ -63,10 +63,32 @@ body {
 .sol {
     color: var(--color-secundario);
     cursor: pointer;
-    width: 50%;
+    width: 100%;
     max-width: 30px;
     max-height: 30px;
 
+}
+.modo__oscuro {
+        --color-secundario: #000;
+        --color-letras: #fff;
+        --color-primario: #212529;
+        --color-terciario: #6c757d;
+        --color-clickable: #adb5bd;
+        --color-tabla: #000;
+        --color-tabla-claro: #dee2e6; 
+        --color-primario__transparente: #212529b2
+}
+.modo__claro {
+    --color-primario: #fdf0d5;
+    --color-secundario: #c1121f;
+    --color-terciario: #003049;
+    --color-clickable: #FF70A6;
+    --color-blanco: #ffffff;
+    --color-letras: #000;
+    --color-tabla: #2a4d14;
+    --color-tabla-claro: #56E39F;
+    --color-clickable__articulo: #e0e0e0;
+    --color-primario__transparente: #fdf0d5b2
 }
 .boton__menú__hamburguesa {
  height: fit-content;
@@ -84,6 +106,9 @@ body {
 .oculto {
     display: none;
 
+}
+.visible {
+    display: block;
 }
 .semitransparente {
     opacity: 70%;
@@ -948,12 +973,5 @@ body {
         color: var(--color-secundario);
     background-color: var(--color-letras);
     }
-    .luna {
-        display: block;
-
-}
-.sol {
-    display: none;
-}
 }
 

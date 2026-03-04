@@ -40,6 +40,7 @@ const hrefJuegos = () => {
 const menuHamburguesa = () => {
     const boton = document.querySelector(".boton__menú__hamburguesa")
     const luna = document.querySelector(".luna")
+    const sol = document.querySelector(".sol")
     const desplegable = document.querySelector(".oculto")
     const main = document.querySelector("main")
     const cabecera = document.querySelector(".cabecera")
@@ -48,6 +49,7 @@ const menuHamburguesa = () => {
         desplegable.classList.replace("oculto", "menu__desplegable--desplegado")
         boton.classList.replace("boton__menú__hamburguesa","oculto")
         luna.classList.replace("luna","oculto")
+        sol.classList.replace("sol","oculto")
         main.classList.toggle("semitransparente")
         seccionLogo.classList.toggle("semitransparente")
         document.body.style.overflow = "hidden"
@@ -67,11 +69,23 @@ botonAtrasHamburguesa.addEventListener("click", () => {
 })}
 
 AnadirEventoSwitchModo = (elemento) => {
+    const luna = document.querySelector(".luna")
+    const sol = document.querySelector(".sol")
+    let modoOscuro = false
 elemento.addEventListener("click", () => {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        elemento.classList.replace("modo__oscuro")
+    const todos = document.querySelectorAll("*")
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches || modoOscuro) {
+        todos.forEach((it) => {
+            if (it != luna) {
+            it.classList.toggle("modo__claro")
+            }
+        })
     } else {
-        elemento.classList.replace("modo__claro")
+        todos.forEach((it) => {
+            if (it != sol) {
+                it.classList.toggle("modo__oscuro")   
+            }
+        })
       }
 })
 }
