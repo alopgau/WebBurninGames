@@ -1,3 +1,5 @@
+"use strict"
+let modoOscuro = false
 const cargarHrefJuego = (juego) => {
     switch (juego.getAttribute("id")) {
         case "0":
@@ -27,23 +29,23 @@ const cargarHrefJuego = (juego) => {
                         }
                         
                     }
-
-const hrefJuegos = () => {
-    const juegos = document.querySelectorAll(".juego")
-    for (let index = 0; index < juegos.length; index++) {
-        juegos[index].setAttribute("id",index);
-    }
-    for (const juego of juegos) {
-                    cargarHrefJuego(juego)
+                    
+                    const hrefJuegos = () => {
+                        const juegos = document.querySelectorAll(".juego")
+                        for (let index = 0; index < juegos.length; index++) {
+                            juegos[index].setAttribute("id",index);
+                        }
+                        for (const juego of juegos) {
+                            cargarHrefJuego(juego)
+                        }
                     }
-                }
-const menuHamburguesa = () => {
-    const boton = document.querySelector(".boton__menú__hamburguesa")
-    const luna = document.querySelector(".luna")
-    const sol = document.querySelector(".sol")
-    const desplegable = document.querySelector(".oculto")
-    const main = document.querySelector("main")
-    const cabecera = document.querySelector(".cabecera")
+                    const menuHamburguesa = () => {
+                        const boton = document.querySelector(".boton__menú__hamburguesa")
+                        const luna = document.querySelector(".luna")
+                        const sol = document.querySelector(".sol")
+                        const desplegable = document.querySelector(".oculto")
+                        const main = document.querySelector("main")
+                        const cabecera = document.querySelector(".cabecera")
     const seccionLogo = document.querySelector(".cabecera__logo")
     boton.addEventListener("click", () => {
         desplegable.classList.replace("oculto", "menu__desplegable--desplegado")
@@ -68,10 +70,9 @@ botonAtrasHamburguesa.addEventListener("click", () => {
     cabecera.classList.replace("cabecera--semitransparente","cabecera")
 })}
 
-AnadirEventoSwitchModo = (elemento) => {
+const AnadirEventoSwitchModo = (elemento) => {
     const luna = document.querySelector(".luna")
     const sol = document.querySelector(".sol")
-    let modoOscuro = false
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
      modoOscuro = true
      sol.classList.add("oculto")
@@ -82,12 +83,12 @@ AnadirEventoSwitchModo = (elemento) => {
 
     }
 elemento.addEventListener("click", () => {
-    debugger
     const todos = document.querySelectorAll("*")
     if (modoOscuro) {
         todos.forEach((it) => {
-            if (it != luna) {
-            it.classList.toggle("modo__claro")
+            if (it != luna && it != sol) {
+            it.classList.add("modo__claro")
+            it.classList.remove("modo__oscuro")
             }
         })
         modoOscuro = false
@@ -96,14 +97,15 @@ elemento.addEventListener("click", () => {
         
     } else {
         todos.forEach((it) => {
-            if (it != sol) {
-                it.classList.toggle("modo__oscuro")
+            if (it != sol && it != luna) {
+                it.classList.add("modo__oscuro")
+                it.classList.remove("modo__claro")
             }
         })
         modoOscuro = true
         sol.classList.replace("visible","oculto")
         luna.classList.replace("oculto","visible")
-      }
+    }
 })
 }
 
@@ -112,7 +114,7 @@ const SwitchModo = ()  => {
     const sol = document.querySelector(".sol")
     AnadirEventoSwitchModo(luna)
     AnadirEventoSwitchModo(sol)
-
+    
 }
 
 function main() {
