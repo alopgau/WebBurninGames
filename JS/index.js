@@ -50,8 +50,8 @@ const cargarHrefJuego = (juego) => {
     boton.addEventListener("click", () => {
         desplegable.classList.replace("oculto", "menu__desplegable--desplegado")
         boton.classList.replace("boton__menú__hamburguesa","oculto")
-        luna.classList.replace("luna","oculto")
-        sol.classList.replace("sol","oculto")
+        luna.classList.replace("visible","oculto")
+        sol.classList.replace("visible","oculto")
         main.classList.toggle("semitransparente")
         seccionLogo.classList.toggle("semitransparente")
         document.body.style.overflow = "hidden"
@@ -64,7 +64,8 @@ botonAtrasHamburguesa.addEventListener("click", () => {
     main.classList.toggle("semitransparente")
     document.body.style.overflow = ""
     desplegable.classList.replace("menu__desplegable--desplegado","oculto")
-    luna.classList.replace("oculto","luna")
+    luna.classList.replace("oculto","visible")
+    sol.classList.replace("oculto","visible")
     seccionLogo.classList.toggle("semitransparente")
     boton.classList.replace("oculto", "boton__menú__hamburguesa")
     cabecera.classList.replace("cabecera--semitransparente","cabecera")
