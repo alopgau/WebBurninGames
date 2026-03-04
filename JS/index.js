@@ -72,20 +72,37 @@ AnadirEventoSwitchModo = (elemento) => {
     const luna = document.querySelector(".luna")
     const sol = document.querySelector(".sol")
     let modoOscuro = false
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+     modoOscuro = true
+     sol.classList.add("oculto")
+     luna.classList.add("visible")
+    } else {
+        luna.classList.add("oculto")
+        sol.classList.add("visible")
+
+    }
 elemento.addEventListener("click", () => {
+    debugger
     const todos = document.querySelectorAll("*")
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches || modoOscuro) {
+    if (modoOscuro) {
         todos.forEach((it) => {
             if (it != luna) {
             it.classList.toggle("modo__claro")
             }
         })
+        modoOscuro = false
+        luna.classList.replace("visible","oculto")
+        sol.classList.replace("oculto","visible")
+        
     } else {
         todos.forEach((it) => {
             if (it != sol) {
-                it.classList.toggle("modo__oscuro")   
+                it.classList.toggle("modo__oscuro")
             }
         })
+        modoOscuro = true
+        sol.classList.replace("visible","oculto")
+        luna.classList.replace("oculto","visible")
       }
 })
 }
