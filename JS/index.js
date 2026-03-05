@@ -65,8 +65,12 @@ const menuHamburguesa = () => {
     main.classList.toggle('semitransparente');
     document.body.style.overflow = '';
     desplegable.classList.replace('menu__desplegable--desplegado', 'oculto');
-    luna.classList.replace('oculto', 'visible');
-    sol.classList.replace('oculto', 'visible');
+    if (modoOscuro) {
+        luna.classList.replace('oculto', 'visible');
+    } else {
+
+        sol.classList.replace('oculto', 'visible');
+    }
     seccionLogo.classList.toggle('semitransparente');
     boton.classList.replace('oculto', 'boton__menú__hamburguesa');
     cabecera.classList.replace('cabecera--semitransparente', 'cabecera');
