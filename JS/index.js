@@ -1,28 +1,28 @@
-'use strict';
+"use strict";
 let modoOscuro = false;
 const cargarHrefJuego = (juego) => {
-  switch (juego.getAttribute('id')) {
-    case '0':
-      juego.addEventListener('click', () => {
+  switch (juego.getAttribute("id")) {
+    case "0":
+      juego.addEventListener("click", () => {
         window.location.href =
-          'https://www.nintendo.com/es-es/Juegos/Juegos-de-Nintendo-Switch-2/Hyrule-Warriors-La-era-del-destierro-2789659.html?srsltid=AfmBOoryhSGJioh5-0_hFfstbhmhxc7gD_xGct0OGVKUCyTSBEqiThBp';
+          "https://www.nintendo.com/es-es/Juegos/Juegos-de-Nintendo-Switch-2/Hyrule-Warriors-La-era-del-destierro-2789659.html?srsltid=AfmBOoryhSGJioh5-0_hFfstbhmhxc7gD_xGct0OGVKUCyTSBEqiThBp";
       });
       break;
-    case '1':
-      juego.addEventListener('click', () => {
-        window.location.href = 'https://www.inazuma.jp/victory-road/es/';
+    case "1":
+      juego.addEventListener("click", () => {
+        window.location.href = "https://www.inazuma.jp/victory-road/es/";
       });
       break;
-    case '2':
-      juego.addEventListener('click', () => {
+    case "2":
+      juego.addEventListener("click", () => {
         window.location.href =
-          'https://www.nintendo.com/es-es/Juegos/Juegos-de-Nintendo-Switch/Leyendas-Pokemon-Z-A-2533423.html?srsltid=AfmBOoqdYbEkZ1BOu8Ka4EzMSmiFLcfTGnLTlwOIfEK446FKyfyuOItE';
+          "https://www.nintendo.com/es-es/Juegos/Juegos-de-Nintendo-Switch/Leyendas-Pokemon-Z-A-2533423.html?srsltid=AfmBOoqdYbEkZ1BOu8Ka4EzMSmiFLcfTGnLTlwOIfEK446FKyfyuOItE";
       });
       break;
-    case '3':
-      juego.addEventListener('click', () => {
+    case "3":
+      juego.addEventListener("click", () => {
         window.location.href =
-          'https://es.bandainamcoent.eu/little-nightmares/little-nightmares-iii';
+          "https://es.bandainamcoent.eu/little-nightmares/little-nightmares-iii";
       });
       break;
 
@@ -32,31 +32,31 @@ const cargarHrefJuego = (juego) => {
 };
 
 const hrefJuegos = () => {
-  const juegos = document.querySelectorAll('.juego');
+  const juegos = document.querySelectorAll(".juego");
   for (let index = 0; index < juegos.length; index++) {
-    juegos[index].setAttribute('id', index);
+    juegos[index].setAttribute("id", index);
   }
   for (const juego of juegos) {
     cargarHrefJuego(juego);
   }
 };
 const menuHamburguesa = () => {
-  const boton = document.querySelector('.boton__menú__hamburguesa');
-  const luna = document.querySelector('.luna');
-  const sol = document.querySelector('.sol');
-  const desplegable = document.querySelector('.oculto');
-  const main = document.querySelector('main');
-  const cabecera = document.querySelector('.cabecera');
-  const seccionLogo = document.querySelector('.cabecera__logo');
-  boton.addEventListener('click', () => {
-    desplegable.classList.replace('oculto', 'menu__desplegable--desplegado');
-    boton.classList.replace('boton__menú__hamburguesa', 'oculto');
-    luna.classList.replace('visible', 'oculto');
-    sol.classList.replace('visible', 'oculto');
-    main.classList.toggle('semitransparente');
-    seccionLogo.classList.toggle('semitransparente');
-    document.body.style.overflow = 'hidden';
-    cabecera.classList.replace('cabecera', 'cabecera--semitransparente');
+  const boton = document.querySelector(".boton__menú__hamburguesa");
+  const luna = document.querySelector(".luna");
+  const sol = document.querySelector(".sol");
+  const desplegable = document.querySelector(".oculto");
+  const main = document.querySelector("main");
+  const cabecera = document.querySelector(".cabecera");
+  const seccionLogo = document.querySelector(".cabecera__logo");
+  boton.addEventListener("click", () => {
+    desplegable.classList.replace("oculto", "menu__desplegable--desplegado");
+    boton.classList.replace("boton__menú__hamburguesa", "oculto");
+    luna.classList.replace("visible", "oculto");
+    sol.classList.replace("visible", "oculto");
+    main.classList.toggle("semitransparente");
+    seccionLogo.classList.toggle("semitransparente");
+    document.body.style.overflow = "hidden";
+    cabecera.classList.replace("cabecera", "cabecera--semitransparente");
   });
   const botonAtrasHamburguesa = document.querySelector(
     '.menu__desplegable__boton__atras'
@@ -78,52 +78,100 @@ const menuHamburguesa = () => {
 };
 
 const AnadirEventoSwitchModo = (elemento) => {
-  const luna = document.querySelector('.luna');
-  const sol = document.querySelector('.sol');
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  const luna = document.querySelector(".luna");
+  const sol = document.querySelector(".sol");
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     modoOscuro = true;
-    sol.classList.add('oculto');
-    luna.classList.add('visible');
+    sol.classList.add("oculto");
+    luna.classList.add("visible");
   } else {
-    luna.classList.add('oculto');
-    sol.classList.add('visible');
+    luna.classList.add("oculto");
+    sol.classList.add("visible");
   }
-  elemento.addEventListener('click', () => {
-    const todos = document.querySelectorAll('*');
+  elemento.addEventListener("click", () => {
+    const todos = document.querySelectorAll("*");
     if (modoOscuro) {
       todos.forEach((it) => {
         if (it != luna && it != sol) {
-          it.classList.add('modo__claro');
-          it.classList.remove('modo__oscuro');
+          it.classList.add("modo__claro");
+          it.classList.remove("modo__oscuro");
         }
       });
       modoOscuro = false;
-      luna.classList.replace('visible', 'oculto');
-      sol.classList.replace('oculto', 'visible');
+      luna.classList.replace("visible", "oculto");
+      sol.classList.replace("oculto", "visible");
     } else {
       todos.forEach((it) => {
         if (it != sol && it != luna) {
-          it.classList.add('modo__oscuro');
-          it.classList.remove('modo__claro');
+          it.classList.add("modo__oscuro");
+          it.classList.remove("modo__claro");
         }
       });
       modoOscuro = true;
-      sol.classList.replace('visible', 'oculto');
-      luna.classList.replace('oculto', 'visible');
+      sol.classList.replace("visible", "oculto");
+      luna.classList.replace("oculto", "visible");
     }
   });
 };
 
 const SwitchModo = () => {
-  const luna = document.querySelector('.luna');
-  const sol = document.querySelector('.sol');
+  const luna = document.querySelector(".luna");
+  const sol = document.querySelector(".sol");
   AnadirEventoSwitchModo(luna);
   AnadirEventoSwitchModo(sol);
 };
 
-function main() {
+const crearJSONJuegos = () => {
+  debugger;
+  const juegos = document.querySelectorAll(".juego");
+  const datosJuego = Array.from(juegos).map((juego) => {
+    const nombreJuego = juego.querySelector(".titulo__juego").textContent;
+    const fechaJuego = juego.querySelector(".fecha__juego").getAttribute("datetime");
+    const plataformasJuego = juego.querySelector(".plataforma__juego").textContent;
+    const portadaJuego = juego.querySelector(".portada__juego").getAttribute("src");
+    return { portadaJuego, nombreJuego, plataformasJuego, fechaJuego };
+  });
+  localStorage.setItem("datosLanzamientos", JSON.stringify(datosJuego));
+};
+
+const PaginaResenas = () => {
+  const juegosProximos = document.querySelector(".seccion__hype");
+  const juegosDisponibles = document.querySelector(".seccion__disponibles");
+  const juegos = JSON.parse(localStorage.getItem("datosLanzamientos"));
+  juegos.forEach((juego) => {
+    const articleJuego = document.createElement("article");
+    const nombreJuego = document.createElement("figcaption");
+    nombreJuego.classList.add("titulo__juego");
+    nombreJuego.textContent = `${juego.nombreJuego}`;
+    const figureJuego = document.createElement("figure");
+
+    articleJuego.classList.add("copia__juego");
+    const portadaJuego = document.createElement("img");
+    portadaJuego.setAttribute("src", juego.portadaJuego);
+    portadaJuego.setAttribute("alt", `Portada de ${juego.nombreJuego}`);
+    portadaJuego.classList.add("portada__juego");
+    const plataformasJuego = document.createElement("p");
+    plataformasJuego.classList.add("plataforma__juego");
+    plataformasJuego.textContent = `${juego.plataformasJuego}`;
+    articleJuego.append(figureJuego);
+    figureJuego.append(portadaJuego, nombreJuego, plataformasJuego);
+
+    if (new Date(juego.fechaJuego) > Date.now()) {
+      juegosProximos.append(articleJuego);
+    } else {
+      juegosDisponibles.append(articleJuego);
+    }
+  });
+};
+
+const main = () => {
+  if (!localStorage.getItem("datosLanzamientos") && document.querySelector(".juego")) {
+    crearJSONJuegos();
+  }
+
   hrefJuegos();
   menuHamburguesa();
   SwitchModo();
-}
+  PaginaResenas();
+};
 main();
