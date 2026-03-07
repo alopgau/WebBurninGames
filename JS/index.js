@@ -189,6 +189,10 @@ const anadirEventoResenas = () => {
         const copia = juego.cloneNode(true)
         seccionEsperados.append(copia)
         juego.classList.add("esperado")
+        copia.addEventListener("click", () => {
+          copia.remove()
+          juego.classList.remove(esperado)
+        })
       }
 
     })
@@ -199,6 +203,10 @@ const anadirEventoResenas = () => {
         const copia = juego.cloneNode(true)
         seccionFavoritos.append(copia)
         juego.classList.add("favorito")
+        copia.addEventListener("click", () => {
+          copia.remove()
+          juego.classList.remove("favorito")
+        })
       }
     })
   })
