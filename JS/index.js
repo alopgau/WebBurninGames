@@ -32,6 +32,7 @@ const cargarHrefJuego = (juego) => {
 };
 
 const hrefJuegos = () => {
+  if (!document.querySelector(".juego")) return;
   const juegos = document.querySelectorAll(".juego");
   for (let index = 0; index < juegos.length; index++) {
     juegos[index].setAttribute("id", index);
@@ -66,10 +67,10 @@ const menuHamburguesa = () => {
     document.body.style.overflow = '';
     desplegable.classList.replace('menu__desplegable--desplegado', 'oculto');
     if (modoOscuro) {
-        luna.classList.replace('oculto', 'visible');
+      luna.classList.replace('oculto', 'visible');
     } else {
 
-        sol.classList.replace('oculto', 'visible');
+      sol.classList.replace('oculto', 'visible');
     }
     seccionLogo.classList.toggle('semitransparente');
     boton.classList.replace('oculto', 'boton__menú__hamburguesa');
@@ -122,19 +123,27 @@ const SwitchModo = () => {
 };
 
 const crearJSONJuegos = () => {
-  debugger;
+
+  // Función que crea un JSON (guardado en localStorage) con toda la información de los juegos en la página lanzamientos
+
   const juegos = document.querySelectorAll(".juego");
   const datosJuego = Array.from(juegos).map((juego) => {
+    const idJuego = juego.getAttribute("id");
     const nombreJuego = juego.querySelector(".titulo__juego").textContent;
     const fechaJuego = juego.querySelector(".fecha__juego").getAttribute("datetime");
     const plataformasJuego = juego.querySelector(".plataforma__juego").textContent;
     const portadaJuego = juego.querySelector(".portada__juego").getAttribute("src");
-    return { portadaJuego, nombreJuego, plataformasJuego, fechaJuego };
+    return { idJuego, portadaJuego, nombreJuego, plataformasJuego, fechaJuego };
   });
   localStorage.setItem("datosLanzamientos", JSON.stringify(datosJuego));
 };
 
-const PaginaResenas = () => {
+const cargarPaginaResenas = () => {
+
+  // Función que carga los juegos de la página lanzamientos en la página reseñas accediendo al localStorage
+
+  if (!localStorage.getItem("datosLanzamientos")) return;
+
   const juegosProximos = document.querySelector(".seccion__hype");
   const juegosDisponibles = document.querySelector(".seccion__disponibles");
   const juegos = JSON.parse(localStorage.getItem("datosLanzamientos"));
@@ -162,16 +171,48 @@ const PaginaResenas = () => {
       juegosDisponibles.append(articleJuego);
     }
   });
+  anadirEventoResenas()
 };
+
+const anadirEventoResenas = () => {
+  if (!document.querySelector(".copia__juego")) return;
+  const seccionEsperados = document.querySelector(".seccion__tusesperados");
+  const seccionFavoritos = document.querySelector(".seccion__favoritos");
+  const seccionProximos = document.querySelector(".seccion__hype");
+  const seccionDisponibles = document.querySelector(".seccion__disponibles");
+  const juegosProximos = seccionProximos.querySelectorAll(".copia__juego");
+  const juegosDisponibles = seccionDisponibles.querySelectorAll(".copia__juego");
+
+  juegosProximos.forEach((juego) => {
+    juego.addEventListener("click", () => {
+      if (!juego.classList.contains("esperado")) {
+        const copia = juego.cloneNode(true)
+        seccionEsperados.append(copia)
+        juego.classList.add("esperado")
+      }
+
+    })
+  })
+  juegosDisponibles.forEach((juego) => {
+    juego.addEventListener("click", () => {
+      if (!juego.classList.contains("favorito")) {
+        const copia = juego.cloneNode(true)
+        seccionFavoritos.append(copia)
+        juego.classList.add("favorito")
+      }
+    })
+  })
+}
+
 
 const main = () => {
   if (!localStorage.getItem("datosLanzamientos") && document.querySelector(".juego")) {
     crearJSONJuegos();
   }
-
   hrefJuegos();
   menuHamburguesa();
   SwitchModo();
-  PaginaResenas();
+  cargarPaginaResenas();
+
 };
 main();
