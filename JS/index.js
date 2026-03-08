@@ -173,7 +173,6 @@ const cargarPaginaResenas = () => {
   });
   anadirEventoResenas()
 };
-
 const anadirEventoResenas = () => {
   if (!document.querySelector(".copia__juego")) return;
   const seccionEsperados = document.querySelector(".seccion__tusesperados");
@@ -182,35 +181,95 @@ const anadirEventoResenas = () => {
   const seccionDisponibles = document.querySelector(".seccion__disponibles");
   const juegosProximos = seccionProximos.querySelectorAll(".copia__juego");
   const juegosDisponibles = seccionDisponibles.querySelectorAll(".copia__juego");
+  if (localStorage.getItem("datosFavoritos")) {
+    const favoritosGuardados = JSON.parse(localStorage.getItem("datosFavoritos"))
+    const juegos = cargarJuegoDesdeJSON(favoritosGuardados);
+    juegos.forEach((juego) => {
+      seccionFavoritos.append(juego)
+    })
+  }
+  if (localStorage.getItem("datosEsperados")) {
+    const esperadosGuardados = JSON.parse(localStorage.getItem("datosFavoritos"))
+    const juegos = cargarJuegoDesdeJSON(esperadosGuardados)
+    juegos.forEach((juego) => {
+      seccionEsperados.append(juego)
+    })
+  }
 
   juegosProximos.forEach((juego) => {
+    const datosJuegos = []
     juego.addEventListener("click", () => {
       if (!juego.classList.contains("esperado")) {
         const copia = juego.cloneNode(true)
         seccionEsperados.append(copia)
         juego.classList.add("esperado")
+        copia.classList.add("eliminable")
+        const portadaJuego = copia.querySelector(".portada__juego").getAttribute("src")
+        const tituloJuego = copia.querySelector(".titulo__juego").textContent
+        const plataformasJuego = copia.querySelector(".plataforma__juego").textContent
+        const datosJuego = { portadaJuego, tituloJuego, plataformasJuego }
+        datosJuegos.push(datosJuego)
+        localStorage.setItem("datosEsperados", JSON.stringify(datosJuego))
         copia.addEventListener("click", () => {
-          copia.remove()
-          juego.classList.remove(esperado)
+          if (confirm("¿Seguro que quieres eliminar este juego de tus esperados?"))
+            copia.remove()
+          juego.classList.remove("esperado")
         })
       }
 
     })
   })
   juegosDisponibles.forEach((juego) => {
+    const datosJuegos = []
     juego.addEventListener("click", () => {
       if (!juego.classList.contains("favorito")) {
         const copia = juego.cloneNode(true)
         seccionFavoritos.append(copia)
+        copia.classList.add("eliminable")
         juego.classList.add("favorito")
+        const portadaJuego = copia.querySelector(".portada__juego").getAttribute("src")
+        const tituloJuego = juego.querySelector(".titulo__juego").textContent
+        const plataformasJuego = copia.querySelector(".plataforma__juego").textContent
+        const datosJuego = { portadaJuego, tituloJuego, plataformasJuego }
+        datosJuegos.push(datosJuego)
+        localStorage.setItem("datosFavoritos", JSON.stringify(datosJuegos))
         copia.addEventListener("click", () => {
-          copia.remove()
-          juego.classList.remove("favorito")
+          if (confirm("¿Seguro que quieres eliminar este juego de tus favoritos?")) {
+            copia.remove()
+            juego.classList.remove("favorito")
+          }
         })
       }
     })
   })
 }
+
+
+
+const cargarJuegoDesdeJSON = (json) => {
+  const listaJuegos = []
+  json.forEach((juego) => {
+    const articleJuego = document.createElement("article");
+    const nombreJuego = document.createElement("figcaption");
+    nombreJuego.classList.add("titulo__juego");
+    nombreJuego.textContent = `${juego.nombreJuego}`;
+    const figureJuego = document.createElement("figure");
+
+    articleJuego.classList.add("copia__juego");
+    const portadaJuego = document.createElement("img");
+    portadaJuego.setAttribute("src", juego.portadaJuego);
+    portadaJuego.setAttribute("alt", `Portada de ${juego.nombreJuego}`);
+    portadaJuego.classList.add("portada__juego");
+    const plataformasJuego = document.createElement("p");
+    plataformasJuego.classList.add("plataforma__juego");
+    plataformasJuego.textContent = `${juego.plataformasJuego}`;
+    articleJuego.append(figureJuego);
+    figureJuego.append(portadaJuego, nombreJuego, plataformasJuego);
+    listaJuegos.push(articleJuego)
+  })
+  return listaJuegos
+}
+
 
 
 const main = () => {
@@ -221,6 +280,5 @@ const main = () => {
   menuHamburguesa();
   SwitchModo();
   cargarPaginaResenas();
-
 };
 main();
