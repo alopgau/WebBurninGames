@@ -183,21 +183,27 @@ const anadirEventoResenas = () => {
   const juegosDisponibles = seccionDisponibles.querySelectorAll(".copia__juego");
   if (localStorage.getItem("datosFavoritos")) {
     const favoritosGuardados = JSON.parse(localStorage.getItem("datosFavoritos"))
-    const juegos = cargarJuegoDesdeJSON(favoritosGuardados);
+    const juegos = cargarJuegoDesdeJSON(favoritosGuardados, "favorito_ls");
     juegos.forEach((juego) => {
+      juego.classList.add("eliminable")
       seccionFavoritos.append(juego)
     })
   }
   if (localStorage.getItem("datosEsperados")) {
     const esperadosGuardados = JSON.parse(localStorage.getItem("datosFavoritos"))
-    const juegos = cargarJuegoDesdeJSON(esperadosGuardados)
+    const juegos = cargarJuegoDesdeJSON(esperadosGuardados, "esperado__ls")
     juegos.forEach((juego) => {
+      juego.classList.add("eliminable")
       seccionEsperados.append(juego)
+      if (confirm("¿Seguro que quieres eliminar este juego de tus esperados?")) {
+        copia.remove()
+        juego.classList.remove("favorito")
+      }
     })
   }
 
+  const datosEsperados = JSON.parse(localStorage.getItem("datosEsperados"))
   juegosProximos.forEach((juego) => {
-    const datosJuegos = []
     juego.addEventListener("click", () => {
       if (!juego.classList.contains("esperado")) {
         const copia = juego.cloneNode(true)
@@ -208,8 +214,8 @@ const anadirEventoResenas = () => {
         const tituloJuego = copia.querySelector(".titulo__juego").textContent
         const plataformasJuego = copia.querySelector(".plataforma__juego").textContent
         const datosJuego = { portadaJuego, tituloJuego, plataformasJuego }
-        datosJuegos.push(datosJuego)
-        localStorage.setItem("datosEsperados", JSON.stringify(datosJuego))
+        datosEsperados.push(datosJuego)
+        localStorage.setItem("datosEsperados", JSON.stringify(datosEsperados))
         copia.addEventListener("click", () => {
           if (confirm("¿Seguro que quieres eliminar este juego de tus esperados?"))
             copia.remove()
@@ -219,8 +225,8 @@ const anadirEventoResenas = () => {
 
     })
   })
+  const datosFavoritos = JSON.parse(localStorage.getItem("datosFavoritos"))
   juegosDisponibles.forEach((juego) => {
-    const datosJuegos = []
     juego.addEventListener("click", () => {
       if (!juego.classList.contains("favorito")) {
         const copia = juego.cloneNode(true)
@@ -231,8 +237,8 @@ const anadirEventoResenas = () => {
         const tituloJuego = juego.querySelector(".titulo__juego").textContent
         const plataformasJuego = copia.querySelector(".plataforma__juego").textContent
         const datosJuego = { portadaJuego, tituloJuego, plataformasJuego }
-        datosJuegos.push(datosJuego)
-        localStorage.setItem("datosFavoritos", JSON.stringify(datosJuegos))
+        datosFavoritos.push(datosJuego)
+        localStorage.setItem("datosFavoritos", JSON.stringify(datosFavoritos))
         copia.addEventListener("click", () => {
           if (confirm("¿Seguro que quieres eliminar este juego de tus favoritos?")) {
             copia.remove()
@@ -246,13 +252,13 @@ const anadirEventoResenas = () => {
 
 
 
-const cargarJuegoDesdeJSON = (json) => {
+const cargarJuegoDesdeJSON = (json, clase) => {
   const listaJuegos = []
   json.forEach((juego) => {
     const articleJuego = document.createElement("article");
     const nombreJuego = document.createElement("figcaption");
     nombreJuego.classList.add("titulo__juego");
-    nombreJuego.textContent = `${juego.nombreJuego}`;
+    nombreJuego.textContent = `${juego.tituloJuego}`;
     const figureJuego = document.createElement("figure");
 
     articleJuego.classList.add("copia__juego");
@@ -264,7 +270,19 @@ const cargarJuegoDesdeJSON = (json) => {
     plataformasJuego.classList.add("plataforma__juego");
     plataformasJuego.textContent = `${juego.plataformasJuego}`;
     articleJuego.append(figureJuego);
+    articleJuego.classList.add(clase)
     figureJuego.append(portadaJuego, nombreJuego, plataformasJuego);
+    articleJuego.addEventListener("click", () => {
+      if (articleJuego.classList.contains("favorito__ls")) {
+        if (confirm("¿Seguro que quieres eliminar este juego de tus favoritos?")) {
+          articleJuego.remove()
+        }
+      } else {
+        if (confirm("¿Seguro que quieres eliminar este juego de tus esperados?")) {
+          articleJuego.remove()
+        }
+      }
+    })
     listaJuegos.push(articleJuego)
   })
   return listaJuegos
