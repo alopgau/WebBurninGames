@@ -202,7 +202,7 @@ const anadirEventoResenas = () => {
     })
   }
 
-  const datosEsperados = JSON.parse(localStorage.getItem("datosEsperados"))
+  const datosEsperados = JSON.parse(localStorage.getItem("datosEsperados") || "[]")
   juegosProximos.forEach((juego) => {
     juego.addEventListener("click", () => {
       if (!juego.classList.contains("esperado")) {
@@ -216,7 +216,7 @@ const anadirEventoResenas = () => {
         const datosJuego = { portadaJuego, tituloJuego, plataformasJuego }
         localStorage.setItem("datosEsperados", JSON.stringify(datosEsperados))
         copia.addEventListener("click", () => {
-          datosFavoritos.push(datosJuego)
+          datosEsperados.push(datosJuego)
           if (confirm("¿Seguro que quieres eliminar este juego de tus esperados?"))
             copia.remove()
           juego.classList.remove("esperado")
@@ -225,7 +225,8 @@ const anadirEventoResenas = () => {
 
     })
   })
-  const datosFavoritos = JSON.parse(localStorage.getItem("datosFavoritos") || "[]")
+
+  let datosFavoritos = JSON.parse(localStorage.getItem("datosFavoritos") || "[]")
   juegosDisponibles.forEach((juego) => {
     juego.addEventListener("click", () => {
       if (!juego.classList.contains("favorito")) {
@@ -241,7 +242,10 @@ const anadirEventoResenas = () => {
         localStorage.setItem("datosFavoritos", JSON.stringify(datosFavoritos))
         copia.addEventListener("click", () => {
           if (confirm("¿Seguro que quieres eliminar este juego de tus favoritos?")) {
+            const FavoritosAux = JSON.parse(localStorage.getItem("datosFavoritos") || "[]")
             copia.remove()
+            datosFavoritos = FavoritosAux.filter((it) => tituloJuego !== it.tituloJuego)
+            localStorage.setItem("datosFavoritos", JSON.stringify(datosFavoritos))
             juego.classList.remove("favorito")
           }
         })
