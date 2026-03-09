@@ -214,9 +214,9 @@ const anadirEventoResenas = () => {
         const tituloJuego = copia.querySelector(".titulo__juego").textContent
         const plataformasJuego = copia.querySelector(".plataforma__juego").textContent
         const datosJuego = { portadaJuego, tituloJuego, plataformasJuego }
-        datosEsperados.push(datosJuego)
         localStorage.setItem("datosEsperados", JSON.stringify(datosEsperados))
         copia.addEventListener("click", () => {
+          datosFavoritos.push(datosJuego)
           if (confirm("¿Seguro que quieres eliminar este juego de tus esperados?"))
             copia.remove()
           juego.classList.remove("esperado")
@@ -225,7 +225,7 @@ const anadirEventoResenas = () => {
 
     })
   })
-  const datosFavoritos = JSON.parse(localStorage.getItem("datosFavoritos"))
+  const datosFavoritos = JSON.parse(localStorage.getItem("datosFavoritos") || "[]")
   juegosDisponibles.forEach((juego) => {
     juego.addEventListener("click", () => {
       if (!juego.classList.contains("favorito")) {
