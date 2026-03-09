@@ -235,16 +235,16 @@ const anadirEventoResenas = () => {
         copia.classList.add("eliminable")
         juego.classList.add("favorito")
         const portadaJuego = copia.querySelector(".portada__juego").getAttribute("src")
-        const tituloJuego = juego.querySelector(".titulo__juego").textContent
+        const tituloJuego = copia.querySelector(".titulo__juego").textContent.trim()
         const plataformasJuego = copia.querySelector(".plataforma__juego").textContent
         const datosJuego = { portadaJuego, tituloJuego, plataformasJuego }
         datosFavoritos.push(datosJuego)
         localStorage.setItem("datosFavoritos", JSON.stringify(datosFavoritos))
-        copia.addEventListener("click", () => {
+        copia.addEventListener(("click"), () => {
           if (confirm("¿Seguro que quieres eliminar este juego de tus favoritos?")) {
             const FavoritosAux = JSON.parse(localStorage.getItem("datosFavoritos") || "[]")
             copia.remove()
-            datosFavoritos = FavoritosAux.filter((it) => tituloJuego !== it.tituloJuego)
+            datosFavoritos = FavoritosAux.filter((it) => tituloJuego !== it.tituloJuego.trim())
             localStorage.setItem("datosFavoritos", JSON.stringify(datosFavoritos))
             juego.classList.remove("favorito")
           }
@@ -263,12 +263,14 @@ const cargarJuegoDesdeJSON = (json, clase) => {
     const nombreJuego = document.createElement("figcaption");
     nombreJuego.classList.add("titulo__juego");
     nombreJuego.textContent = `${juego.tituloJuego}`;
+
     const figureJuego = document.createElement("figure");
 
     articleJuego.classList.add("copia__juego");
     const portadaJuego = document.createElement("img");
     portadaJuego.setAttribute("src", juego.portadaJuego);
     portadaJuego.setAttribute("alt", `Portada de ${juego.nombreJuego}`);
+
     portadaJuego.classList.add("portada__juego");
     const plataformasJuego = document.createElement("p");
     plataformasJuego.classList.add("plataforma__juego");
