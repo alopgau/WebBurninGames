@@ -58,11 +58,12 @@
                 <h1 class="titulo__página">Contacto y newsletter</h1>
                     <section class="seccion__contacto">
                         <h2 class="titulo__subseccion">Formulario de contacto</h2>
-                        <form class="formulario" action="/send/" method="post">
+                        <form class="formulario" action="/send/" method="post" novalidate>
                             <fieldset class="formulario__campos">
                                 <legend class="formulario__leyenda">¡Contáctanos!</legend>
                         
                                 <label class="formulario__etiqueta" for="motivos">Motivo de contacto:
+
                                     <select class="formulario__motivo" name="motivos" id="motivos"> 
                                         <option class="formulario__motivo--opcion" value="1">Patrocinio o asunto empresarial</option>
                                         <option class="formulario__motivo--opcion" value="2">Contratación como personal del equipo</option>
@@ -73,10 +74,12 @@
                                 <label class="formulario__etiqueta" for="email">Email:
                                     <input class="formulario__campo" type="email" name="email" id="email" placeholder="Introduce tu email" required>
                                 </label>
+
                         
                                 <label class="formulario__etiqueta" for="nombre">Nombre:
                                     <input class="formulario__campo" type="text" name="nombre" id="nombre" placeholder="Introduce tu nombre" required>
                                 </label>
+
                         
                                 <label class="formulario__etiqueta" for="asunto">Asunto:
                                     <input class="formulario__campo" type="text" name="asunto" id="asunto" placeholder="Introduce el asunto" required>
@@ -85,6 +88,7 @@
                                 <label class="formulario__etiqueta--mensaje" for="mensaje">Mensaje:
                                     <textarea class="formulario__campo--mensaje" name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Introduce tu mensaje" required></textarea>
                                 </label>
+
                         
                                 <button class="formulario__boton--grande" type="submit">Enviar</button>
                             </fieldset>
@@ -99,6 +103,7 @@
                             <label class="formulario__etiqueta--newsletter" for="newsletter">Email:
                                 <input class="formulario__campo--newsletter" type="email" name="newsletter" id="newsletter" placeholder="Introduce tu email" required>
                             </label>
+                            <p class="error__formulario"></p>
                             <button class="formulario__boton" type="submit">Suscribirse</button>
                         </form>
                     </fieldset>

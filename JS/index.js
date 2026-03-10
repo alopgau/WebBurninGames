@@ -143,7 +143,7 @@ const cargarPaginaResenas = () => {
 
   // Función que carga los juegos de la página lanzamientos en la página reseñas accediendo al localStorage
 
-  if (!localStorage.getItem("datosLanzamientos")) return;
+  if (!localStorage.getItem("datosLanzamientos") || !document.querySelector(".seccion__hype")) return;
   const juegosProximos = document.querySelector(".seccion__hype");
   const juegosDisponibles = document.querySelector(".seccion__disponibles");
   const juegos = JSON.parse(localStorage.getItem("datosLanzamientos"));
@@ -299,16 +299,62 @@ const cargarJuegoDesdeJSON = (json, clase) => {
   return listaJuegos
 }
 
+const validacionFormulario = () => {
+  if (!document.querySelector(".seccion__contacto")) return;
+
+  const inputEmail = document.querySelector("#email");
+  const inputNombre = document.querySelector("#nombre");
+  const inputAsunto = document.querySelector("#asunto");
+  const inputMensaje = document.querySelector("#mensaje");
+
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const validarInput = (e) => {
+    const valor = e.target.value.trim();
+
+    if (valor === "") {
+      mostrarError(e.target, "Este campo es obligatorio");
+    }
+
+    if (e.target.id === "email" && !regexEmail.test(valor)) {
+      mostrarError(e.target, "Email no válido");
+    }
+
+    limpiarError(e.target);
+  }
+
+  const mostrarError = (input, mensaje) => {
+    limpiarError(input);
+
+    const error = document.createElement("P");
+    error.textContent = mensaje;
+    error.classList.add("error");
+
+    input.parentElement.append(error);
+  }
+
+  const limpiarError = (input) => {
+    const alerta = input.parentElement.querySelector(".error");
+    if (alerta) {
+      alerta.remove();
+    }
+  }
+
+  [inputEmail, inputNombre, inputAsunto, inputMensaje].forEach(input => {
+    input.addEventListener("input", validarInput);
+  });
+}
+
 
 
 const main = () => {
   if (!localStorage.getItem("datosLanzamientos") && document.querySelector(".juego")) {
-    debugger
     crearJSONJuegos();
   }
   hrefJuegos();
   menuHamburguesa();
   SwitchModo();
   cargarPaginaResenas();
+  validacionFormulario();
 };
 main();
