@@ -129,12 +129,12 @@ const crearJSONJuegos = () => {
   const juegos = document.querySelectorAll(".juego");
   const datosJuego = Array.from(juegos).map((juego) => {
     contador++
-    const idJuego = contador
+    const numJuego = contador
     const nombreJuego = juego.querySelector(".titulo__juego").textContent;
     const fechaJuego = juego.querySelector(".fecha__juego").getAttribute("datetime");
     const plataformasJuego = juego.querySelector(".plataforma__juego").textContent;
     const portadaJuego = juego.querySelector(".portada__juego").getAttribute("src");
-    return { idJuego, portadaJuego, nombreJuego, plataformasJuego, fechaJuego };
+    return { numJuego, portadaJuego, nombreJuego, plataformasJuego, fechaJuego };
   });
   localStorage.setItem("datosLanzamientos", JSON.stringify(datosJuego));
 };
@@ -154,7 +154,7 @@ const cargarPaginaResenas = () => {
     nombreJuego.textContent = `${juego.nombreJuego}`;
     const figureJuego = document.createElement("figure");
 
-    const idJuego = articleJuego.setAttribute("id", juego.idJuego)
+    const idJuego = articleJuego.setAttribute("data-numJuego", juego.idJuego)
 
     articleJuego.classList.add("copia__juego");
     const portadaJuego = document.createElement("img");
@@ -231,7 +231,7 @@ const anadirEventoResenas = () => {
 
   let datosFavoritos = JSON.parse(localStorage.getItem("datosFavoritos") || "[]")
   juegosDisponibles.forEach((juego) => {
-    const idJuego = juego.getAttribute("id")
+    const numJuego = juego.getAttribute("data-numJuego")
     juego.addEventListener("click", () => {
       if (!juego.classList.contains("favorito")) {
         const copia = juego.cloneNode(true)
@@ -241,14 +241,14 @@ const anadirEventoResenas = () => {
         const portadaJuego = copia.querySelector(".portada__juego").getAttribute("src")
         const tituloJuego = copia.querySelector(".titulo__juego").textContent
         const plataformasJuego = copia.querySelector(".plataforma__juego").textContent
-        const datosJuego = { idJuego, portadaJuego, tituloJuego, plataformasJuego }
+        const datosJuego = { numJuego, portadaJuego, tituloJuego, plataformasJuego }
         datosFavoritos.push(datosJuego)
         localStorage.setItem("datosFavoritos", JSON.stringify(datosFavoritos))
         copia.addEventListener(("click"), () => {
           if (confirm("¿Seguro que quieres eliminar este juego de tus favoritos?")) {
             const FavoritosAux = JSON.parse(localStorage.getItem("datosFavoritos") || "[]")
             copia.remove()
-            datosFavoritos = FavoritosAux.filter((it) => idJuego !== it.idJuego)
+            datosFavoritos = FavoritosAux.filter((it) => numJuego !== it.numJuego)
             localStorage.setItem("datosFavoritos", JSON.stringify(datosFavoritos))
             juego.classList.remove("favorito")
           }
