@@ -125,10 +125,11 @@ const SwitchModo = () => {
 const crearJSONJuegos = () => {
 
   // Función que crea un JSON (guardado en localStorage) con toda la información de los juegos en la página lanzamientos
-
+  let contador = 0
   const juegos = document.querySelectorAll(".juego");
   const datosJuego = Array.from(juegos).map((juego) => {
-    const idJuego = juego.getAttribute("id");
+    contador++
+    const idJuego = contador
     const nombreJuego = juego.querySelector(".titulo__juego").textContent;
     const fechaJuego = juego.querySelector(".fecha__juego").getAttribute("datetime");
     const plataformasJuego = juego.querySelector(".plataforma__juego").textContent;
@@ -143,7 +144,6 @@ const cargarPaginaResenas = () => {
   // Función que carga los juegos de la página lanzamientos en la página reseñas accediendo al localStorage
 
   if (!localStorage.getItem("datosLanzamientos")) return;
-
   const juegosProximos = document.querySelector(".seccion__hype");
   const juegosDisponibles = document.querySelector(".seccion__disponibles");
   const juegos = JSON.parse(localStorage.getItem("datosLanzamientos"));
@@ -153,6 +153,8 @@ const cargarPaginaResenas = () => {
     nombreJuego.classList.add("titulo__juego");
     nombreJuego.textContent = `${juego.nombreJuego}`;
     const figureJuego = document.createElement("figure");
+
+    const idJuego = articleJuego.setAttribute("id", juego.idJuego)
 
     articleJuego.classList.add("copia__juego");
     const portadaJuego = document.createElement("img");
@@ -215,8 +217,8 @@ const anadirEventoResenas = () => {
         const plataformasJuego = copia.querySelector(".plataforma__juego").textContent
         const datosJuego = { portadaJuego, tituloJuego, plataformasJuego }
         localStorage.setItem("datosEsperados", JSON.stringify(datosEsperados))
+        datosEsperados.push(datosJuego)
         copia.addEventListener("click", () => {
-          datosEsperados.push(datosJuego)
           if (confirm("¿Seguro que quieres eliminar este juego de tus esperados?"))
             copia.remove()
           juego.classList.remove("esperado")
@@ -226,8 +228,10 @@ const anadirEventoResenas = () => {
     })
   })
 
+
   let datosFavoritos = JSON.parse(localStorage.getItem("datosFavoritos") || "[]")
   juegosDisponibles.forEach((juego) => {
+    const idJuego = juego.getAttribute("id")
     juego.addEventListener("click", () => {
       if (!juego.classList.contains("favorito")) {
         const copia = juego.cloneNode(true)
@@ -235,16 +239,16 @@ const anadirEventoResenas = () => {
         copia.classList.add("eliminable")
         juego.classList.add("favorito")
         const portadaJuego = copia.querySelector(".portada__juego").getAttribute("src")
-        const tituloJuego = copia.querySelector(".titulo__juego").textContent.trim()
+        const tituloJuego = copia.querySelector(".titulo__juego").textContent
         const plataformasJuego = copia.querySelector(".plataforma__juego").textContent
-        const datosJuego = { portadaJuego, tituloJuego, plataformasJuego }
+        const datosJuego = { idJuego, portadaJuego, tituloJuego, plataformasJuego }
         datosFavoritos.push(datosJuego)
         localStorage.setItem("datosFavoritos", JSON.stringify(datosFavoritos))
         copia.addEventListener(("click"), () => {
           if (confirm("¿Seguro que quieres eliminar este juego de tus favoritos?")) {
             const FavoritosAux = JSON.parse(localStorage.getItem("datosFavoritos") || "[]")
             copia.remove()
-            datosFavoritos = FavoritosAux.filter((it) => tituloJuego !== it.tituloJuego.trim())
+            datosFavoritos = FavoritosAux.filter((it) => idJuego !== it.idJuego)
             localStorage.setItem("datosFavoritos", JSON.stringify(datosFavoritos))
             juego.classList.remove("favorito")
           }
@@ -269,6 +273,7 @@ const cargarJuegoDesdeJSON = (json, clase) => {
     articleJuego.classList.add("copia__juego");
     const portadaJuego = document.createElement("img");
     portadaJuego.setAttribute("src", juego.portadaJuego);
+    articleJuego.setAttribute("id", juego.idJuego);
     portadaJuego.setAttribute("alt", `Portada de ${juego.nombreJuego}`);
 
     portadaJuego.classList.add("portada__juego");
@@ -298,6 +303,7 @@ const cargarJuegoDesdeJSON = (json, clase) => {
 
 const main = () => {
   if (!localStorage.getItem("datosLanzamientos") && document.querySelector(".juego")) {
+    debugger
     crearJSONJuegos();
   }
   hrefJuegos();
