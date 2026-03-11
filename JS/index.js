@@ -306,14 +306,22 @@ const validacionFormulario = () => {
   const inputNombre = document.querySelector("#nombre");
   const inputAsunto = document.querySelector("#asunto");
   const inputMensaje = document.querySelector("#mensaje");
+  const inputNewsletter = document.querySelector("#newsletter");
 
   const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const validarInput = (e) => {
+
+
     const valor = e.target.value.trim();
 
-    if ((e.target.id  === "mensaje")  && valor.length < 4) {
+    if ((e.target.id === "mensaje") && valor.length < 4) {
       mostrarError(e.target, "El campo debe tener un minimo de 4 caracteres");
+      return;
+    }
+    if ((e.target.id === "asunto" || e.target.id === "nombre") && valor.length < 3) {
+      mostrarError(e.target, "El campo debe tener un minimo de 3 caracteres");
+      return;
     }
 
     if ((e.target.id === "email" || e.target.id === "newsletter") && !regexEmail.test(valor)) {
@@ -329,19 +337,19 @@ const validacionFormulario = () => {
 
     const error = document.createElement("p");
     error.textContent = mensaje;
-    error.classList.add("error");
+    error.classList.add("error__formulario");
 
     input.parentElement.append(error);
   }
 
   const limpiarError = (input) => {
-    const alerta = input.parentElement.querySelector(".error");
+    const alerta = input.parentElement.querySelector(".error__formulario");
     if (alerta) {
       alerta.remove();
     }
   }
 
-  [inputEmail, inputNombre, inputAsunto, inputMensaje].forEach(input => {
+  [inputEmail, inputNombre, inputAsunto, inputMensaje, inputNewsletter].forEach(input => {
     input.addEventListener("blur", validarInput);
   });
 }
