@@ -312,12 +312,13 @@ const validacionFormulario = () => {
   const validarInput = (e) => {
     const valor = e.target.value.trim();
 
-    if (valor === "") {
-      mostrarError(e.target, "Este campo es obligatorio");
+    if ((e.target.id  === "mensaje")  && valor.length < 4) {
+      mostrarError(e.target, "El campo debe tener un minimo de 4 caracteres");
     }
 
-    if (e.target.id === "email" && !regexEmail.test(valor)) {
+    if ((e.target.id === "email" || e.target.id === "newsletter") && !regexEmail.test(valor)) {
       mostrarError(e.target, "Email no válido");
+      return;
     }
 
     limpiarError(e.target);
@@ -326,7 +327,7 @@ const validacionFormulario = () => {
   const mostrarError = (input, mensaje) => {
     limpiarError(input);
 
-    const error = document.createElement("P");
+    const error = document.createElement("p");
     error.textContent = mensaje;
     error.classList.add("error");
 
@@ -341,7 +342,7 @@ const validacionFormulario = () => {
   }
 
   [inputEmail, inputNombre, inputAsunto, inputMensaje].forEach(input => {
-    input.addEventListener("input", validarInput);
+    input.addEventListener("blur", validarInput);
   });
 }
 
