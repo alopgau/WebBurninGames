@@ -297,7 +297,10 @@ body {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  height: fit-content;
   perspective: 500px;
+  max-height: 386px;
+  max-width: 444px;
   transition: transform 0.3s ease 0.2s;
 }
 
@@ -315,19 +318,17 @@ body {
 
 .fecha__juego {
   color: var(--color-letras);
-  display: block;
   text-align: center;
   font-family: "Press Start 2P", system-ui;
-  font-size: small;
-  padding: 15px;
+  font-size: 0.7rem;
 }
 
 .plataforma__juego {
   color: var(--color-letras);
+  padding: 1rem;
   text-align: center;
   font-family: "Press Start 2P", sans-serif;
   font-size: small;
-  padding: 15px;
 }
 
 .seccion__recientes,
@@ -345,17 +346,6 @@ body {
 .seccion__recientes:last-child {
   padding-bottom: 25px;
 }
-
-/*
-.seccion__proximos {
-    display: flex;
-    flex-direction: column;
-    align-content: space-between;
-    align-items: center;
-    gap: 25px;
-    padding-bottom: 10px;
-}
-*/
 
 .pie__de__página {
   background-color: var(--color-primario);
@@ -1288,8 +1278,14 @@ body {
   }
 }
 @media screen and (max-width: 768px) {
-  .juego {
-    width: 100%;
+  .seccion__recientes,
+  .seccion__proximos,
+  .seccion__favoritos,
+  .seccion__hype {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .boton__menú__hamburguesa {
     display: block;

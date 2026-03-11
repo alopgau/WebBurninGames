@@ -356,7 +356,6 @@ const validacionFormulario = () => {
       }
     }
     if (e.target.id === "newsletter") {
-      debugger
       if (!regexEmail.test(valor)) {
         mostrarError(e.target, "Email no válido");
         newsletter = false;
