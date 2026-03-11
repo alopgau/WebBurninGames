@@ -307,29 +307,85 @@ const validacionFormulario = () => {
   const inputAsunto = document.querySelector("#asunto");
   const inputMensaje = document.querySelector("#mensaje");
   const inputNewsletter = document.querySelector("#newsletter");
+  const botonEnviar = document.querySelector(".formulario__boton--grande");
+  const botonEnviarNewsletter = document.querySelector(".formulario__boton");
 
   const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+  const estadoValidacion = {
+    email: false,
+    nombre: false,
+    asunto: false,
+    mensaje: false,
+  };
+  let newsletter = false
+
   const validarInput = (e) => {
-
-
     const valor = e.target.value.trim();
+    const campoId = e.target.id;
 
-    if ((e.target.id === "mensaje") && valor.length < 4) {
-      mostrarError(e.target, "El campo debe tener un minimo de 4 caracteres");
-      return;
-    }
-    if ((e.target.id === "asunto" || e.target.id === "nombre") && valor.length < 3) {
-      mostrarError(e.target, "El campo debe tener un minimo de 3 caracteres");
-      return;
-    }
 
-    if ((e.target.id === "email" || e.target.id === "newsletter") && !regexEmail.test(valor)) {
-      mostrarError(e.target, "Email no válido");
-      return;
+    if (campoId === "mensaje") {
+      if (valor.length < 4) {
+        mostrarError(e.target, "El campo debe tener un minimo de 4 caracteres");
+        estadoValidacion.mensaje = false;
+      } else {
+        limpiarError(e.target);
+        estadoValidacion.mensaje = true;
+      }
     }
 
-    limpiarError(e.target);
+    if (campoId === "asunto" || campoId === "nombre") {
+      if (valor.length < 3) {
+        mostrarError(e.target, "El campo debe tener un minimo de 3 caracteres");
+        estadoValidacion[campoId] = false;
+      } else {
+        limpiarError(e.target);
+        estadoValidacion[campoId] = true;
+      }
+    }
+
+
+    if (e.target.id === "email") {
+      if (!regexEmail.test(valor)) {
+        mostrarError(e.target, "Email no válido");
+        estadoValidacion[campoId] = false;
+      } else {
+        limpiarError(e.target);
+        estadoValidacion[campoId] = true;
+      }
+    }
+    if (e.target.id === "newsletter") {
+      debugger
+      if (!regexEmail.test(valor)) {
+        mostrarError(e.target, "Email no válido");
+        newsletter = false;
+      } else {
+        limpiarError(e.target);
+        newsletter = true;
+      }
+    }
+    verificarEstadoBoton();
+  }
+
+
+  const verificarEstadoBoton = () => {
+    const todosValidos = Object.values(estadoValidacion).every(valor => valor === true);
+
+    if (todosValidos) {
+      botonEnviar.disabled = false;
+      botonEnviar.classList.remove('boton-desactivado');
+    } else {
+      botonEnviar.disabled = true;
+      botonEnviar.classList.add('boton-desactivado');
+    }
+    if (newsletter) {
+      botonEnviarNewsletter.disabled = false;
+      botonEnviarNewsletter.classList.remove('boton-desactivado');
+    } else {
+      botonEnviarNewsletter.disabled = true;
+      botonEnviarNewsletter.classList.add('boton-desactivado');
+    }
   }
 
   const mostrarError = (input, mensaje) => {
@@ -349,10 +405,18 @@ const validacionFormulario = () => {
     }
   }
 
+
   [inputEmail, inputNombre, inputAsunto, inputMensaje, inputNewsletter].forEach(input => {
     input.addEventListener("blur", validarInput);
+    input.addEventListener("input", validarInput);
   });
+
+  botonEnviar.disabled = true;
+  botonEnviar.classList.add('boton-desactivado');
+  botonEnviarNewsletter.disabled = true;
+  botonEnviarNewsletter.classList.add('boton-desactivado');
 }
+
 
 
 
