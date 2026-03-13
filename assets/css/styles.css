@@ -51,7 +51,7 @@ body {
 }
 
 .luna {
-  color: var(--color-letras);
+  color: var(--color-secundario);
   display: none;
   width: 100%;
   cursor: pointer;
@@ -59,13 +59,13 @@ body {
   max-height: 30px;
 }
 .sol {
-  color: var(--color-secundario);
+  color: var(--color-blanco);
   cursor: pointer;
   width: 100%;
   max-width: 30px;
   max-height: 30px;
 }
-.modo__oscuro {
+body.modo__oscuro {
   --color-secundario: #000;
   --color-letras: #fff;
   --color-letras-secundario: #fff;
@@ -79,7 +79,7 @@ body {
   --color-hover-botones: #fff;
   --color-hover-botones-secundario: #000;
 }
-.modo__claro {
+body.modo__claro {
   --color-primario: #fdf0d5;
   --color-secundario: #c1121f;
   --color-terciario: #003049;

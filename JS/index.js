@@ -78,48 +78,42 @@ const menuHamburguesa = () => {
   });
 };
 
-const AnadirEventoSwitchModo = (elemento) => {
+const detectarModoSistema = () => {
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.body.classList.add("modo__oscuro");
+  } else {
+    document.body.classList.add("modo__claro")
+  }
+};
+
+const toggleModo = () => {
+
   const luna = document.querySelector(".luna");
   const sol = document.querySelector(".sol");
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    modoOscuro = true;
-    sol.classList.add("oculto");
-    luna.classList.add("visible");
+
+  if (document.body.classList.contains("modo__claro")) {
+    document.body.classList.replace("modo__claro", "modo__oscuro")
+    sol.classList.add("oculto")
   } else {
-    luna.classList.add("oculto");
-    sol.classList.add("visible");
+    document.body.classList.replace("modo__oscuro", "modo__claro")
+    sol.classList.add("visible")
+    luna.classList.add("oculto")
   }
-  elemento.addEventListener("click", () => {
-    const todos = document.querySelectorAll("*");
-    if (modoOscuro) {
-      todos.forEach((it) => {
-        if (it != luna && it != sol) {
-          it.classList.add("modo__claro");
-          it.classList.remove("modo__oscuro");
-        }
-      });
-      modoOscuro = false;
-      luna.classList.replace("visible", "oculto");
-      sol.classList.replace("oculto", "visible");
-    } else {
-      todos.forEach((it) => {
-        if (it != sol && it != luna) {
-          it.classList.add("modo__oscuro");
-          it.classList.remove("modo__claro");
-        }
-      });
-      modoOscuro = true;
-      sol.classList.replace("visible", "oculto");
-      luna.classList.replace("oculto", "visible");
-    }
-  });
+
+
+  luna.classList.toggle("visible");
+  luna.classList.toggle("oculto");
+
+  sol.classList.toggle("visible");
+  sol.classList.toggle("oculto");
 };
 
 const SwitchModo = () => {
   const luna = document.querySelector(".luna");
   const sol = document.querySelector(".sol");
-  AnadirEventoSwitchModo(luna);
-  AnadirEventoSwitchModo(sol);
+
+  luna.addEventListener("click", toggleModo);
+  sol.addEventListener("click", toggleModo);
 };
 
 const crearJSONJuegos = () => {
@@ -425,6 +419,7 @@ const main = () => {
   }
   hrefJuegos();
   menuHamburguesa();
+  detectarModoSistema();
   SwitchModo();
   cargarPaginaResenas();
   validacionFormulario();
