@@ -1,5 +1,4 @@
 "use strict";
-let modoOscuro = false;
 const cargarHrefJuego = (juego) => {
   switch (juego.getAttribute("id")) {
     case "0":
@@ -41,41 +40,76 @@ const hrefJuegos = () => {
     cargarHrefJuego(juego);
   }
 };
-const menuHamburguesa = () => {
-  const boton = document.querySelector(".boton__menú__hamburguesa");
-  const luna = document.querySelector(".luna");
-  const sol = document.querySelector(".sol");
-  const desplegable = document.querySelector(".oculto");
-  const main = document.querySelector("main");
-  const cabecera = document.querySelector(".cabecera");
-  const seccionLogo = document.querySelector(".cabecera__logo");
-  boton.addEventListener("click", () => {
-    desplegable.classList.replace("oculto", "menu__desplegable--desplegado");
-    boton.classList.replace("boton__menú__hamburguesa", "oculto");
-    luna.classList.replace("visible", "oculto");
-    sol.classList.replace("visible", "oculto");
-    main.classList.toggle("semitransparente");
-    seccionLogo.classList.toggle("semitransparente");
-    document.body.style.overflow = "hidden";
-    cabecera.classList.replace("cabecera", "cabecera--semitransparente");
-  });
-  const botonAtrasHamburguesa = document.querySelector(
-    '.menu__desplegable__boton__atras'
-  );
-  botonAtrasHamburguesa.addEventListener('click', () => {
-    main.classList.toggle('semitransparente');
-    document.body.style.overflow = '';
-    desplegable.classList.replace('menu__desplegable--desplegado', 'oculto');
-    if (modoOscuro) {
-      luna.classList.replace('oculto', 'visible');
-    } else {
+const obtenerElementosMenu = () => {
+  return {
+    boton: document.querySelector(".boton__menú__hamburguesa"),
+    luna: document.querySelector(".luna"),
+    sol: document.querySelector(".sol"),
+    desplegable: document.querySelector(".oculto"),
+    main: document.querySelector("main"),
+    cabecera: document.querySelector(".cabecera"),
+    seccionLogo: document.querySelector(".cabecera__logo"),
+    botonAtras: document.querySelector(".menu__desplegable__boton__atras"),
+  };
+};
 
-      sol.classList.replace('oculto', 'visible');
-    }
-    seccionLogo.classList.toggle('semitransparente');
-    boton.classList.replace('oculto', 'boton__menú__hamburguesa');
-    cabecera.classList.replace('cabecera--semitransparente', 'cabecera');
-  });
+const abrirMenu = (el) => {
+  el.desplegable.classList.replace("oculto", "menu__desplegable--desplegado");
+  el.boton.classList.replace("boton__menú__hamburguesa", "oculto");
+
+  if (el.luna.classList.contains("visible")) {
+    el.luna.classList.replace("visible", "oculto")
+  } else {
+    el.luna.classList.add("oculto");
+  }
+  if (el.sol.classList.contains("visible")) {
+    el.sol.classList.replace("visible", "oculto");
+
+  } else {
+    el.sol.classList.add("oculto");
+  }
+
+  el.main.classList.toggle("semitransparente");
+  el.seccionLogo.classList.toggle("semitransparente");
+
+  document.body.style.overflow = "hidden";
+
+  el.cabecera.classList.replace("cabecera", "cabecera--semitransparente");
+};
+
+const restaurarIconoModo = (luna, sol) => {
+
+  if (document.body.classList.contains("modo__oscuro")) {
+    sol.classList.replace("oculto", "visible");
+  } else {
+    luna.classList.replace("oculto", "visible");
+  }
+};
+
+const cerrarMenu = (el) => {
+  document.body.style.overflow = "";
+
+  el.desplegable.classList.replace("menu__desplegable--desplegado", "oculto");
+
+  restaurarIconoModo(el.luna, el.sol);
+
+  el.seccionLogo.classList.toggle("semitransparente");
+
+  el.main.classList.toggle("semitransparente");
+
+  el.boton.classList.replace("oculto", "boton__menú__hamburguesa");
+
+  el.cabecera.classList.replace("cabecera--semitransparente", "cabecera");
+};
+
+const menuHamburguesa = () => {
+  const elementos = obtenerElementosMenu();
+
+  elementos.boton.addEventListener("click", () => abrirMenu(elementos));
+
+  elementos.botonAtras.addEventListener("click", () =>
+    cerrarMenu(elementos)
+  );
 };
 
 const detectarModoSistema = () => {
@@ -108,7 +142,7 @@ const toggleModo = () => {
   sol.classList.toggle("oculto");
 };
 
-const SwitchModo = () => {
+const aplicarSwitchModo = () => {
   const luna = document.querySelector(".luna");
   const sol = document.querySelector(".sol");
 
@@ -118,16 +152,17 @@ const SwitchModo = () => {
 
 const crearJSONJuegos = () => {
 
-  // Función que crea un JSON (guardado en localStorage) con toda la información de los juegos en la página lanzamientos
   let contador = 0
   const juegos = document.querySelectorAll(".juego");
   const datosJuego = Array.from(juegos).map((juego) => {
+
     contador++
     const numJuego = contador
     const nombreJuego = juego.querySelector(".titulo__juego").textContent;
     const fechaJuego = juego.querySelector(".fecha__juego").getAttribute("datetime");
     const plataformasJuego = juego.querySelector(".plataforma__juego").textContent;
     const portadaJuego = juego.querySelector(".portada__juego").getAttribute("src");
+
     return { numJuego, portadaJuego, nombreJuego, plataformasJuego, fechaJuego };
   });
   localStorage.setItem("datosLanzamientos", JSON.stringify(datosJuego));
@@ -418,9 +453,9 @@ const main = () => {
     crearJSONJuegos();
   }
   hrefJuegos();
-  menuHamburguesa();
   detectarModoSistema();
-  SwitchModo();
+  aplicarSwitchModo();
+  menuHamburguesa();
   cargarPaginaResenas();
   validacionFormulario();
 };
