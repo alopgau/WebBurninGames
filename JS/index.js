@@ -169,39 +169,65 @@ const crearJSONJuegos = () => {
 };
 
 const cargarPaginaResenas = () => {
+  const obtenerJuegos = () => {
+    const datos = localStorage.getItem("datosLanzamientos");
+    return datos ? JSON.parse(datos) : [];
+  };
 
-  // Función que carga los juegos de la página lanzamientos en la página reseñas accediendo al localStorage
+  const crearElementoJuego = (juego) => {
+    const article = document.createElement("article");
+    article.classList.add("copia__juego");
+    article.dataset.numJuego = juego.idJuego;
 
-  if (!localStorage.getItem("datosLanzamientos") || !document.querySelector(".seccion__hype")) return;
-  const juegosProximos = document.querySelector(".seccion__hype");
-  const juegosDisponibles = document.querySelector(".seccion__disponibles");
-  const juegos = JSON.parse(localStorage.getItem("datosLanzamientos"));
-  juegos.forEach((juego) => {
-    const articleJuego = document.createElement("article");
-    const nombreJuego = document.createElement("figcaption");
-    nombreJuego.classList.add("titulo__juego");
-    nombreJuego.textContent = `${juego.nombreJuego}`;
-    const figureJuego = document.createElement("figure");
+    const figure = document.createElement("figure");
 
-    const idJuego = articleJuego.setAttribute("data-numJuego", juego.idJuego)
+    const img = document.createElement("img");
+    img.src = juego.portadaJuego;
+    img.alt = `Portada de ${juego.nombreJuego}`;
+    img.classList.add("portada__juego");
 
-    articleJuego.classList.add("copia__juego");
-    const portadaJuego = document.createElement("img");
-    portadaJuego.setAttribute("src", juego.portadaJuego);
-    portadaJuego.setAttribute("alt", `Portada de ${juego.nombreJuego}`);
-    portadaJuego.classList.add("portada__juego");
-    const plataformasJuego = document.createElement("p");
-    plataformasJuego.classList.add("plataforma__juego");
-    plataformasJuego.textContent = `${juego.plataformasJuego}`;
-    articleJuego.append(figureJuego);
-    figureJuego.append(portadaJuego, nombreJuego, plataformasJuego);
+    const titulo = document.createElement("figcaption");
+    titulo.classList.add("titulo__juego");
+    titulo.textContent = juego.nombreJuego;
 
-    if (new Date(juego.fechaJuego) > Date.now()) {
-      juegosProximos.append(articleJuego);
+    const plataformas = document.createElement("p");
+    plataformas.classList.add("plataforma__juego");
+    plataformas.textContent = juego.plataformasJuego;
+
+    figure.append(img, titulo, plataformas);
+    article.append(figure);
+
+    return article;
+  };
+
+  const esJuegoProximo = (fechaJuego) => {
+    return new Date(fechaJuego) > Date.now();
+  };
+
+  const renderizarJuego = (juego, proximos, disponibles) => {
+    const elemento = crearElementoJuego(juego);
+
+    if (esJuegoProximo(juego.fechaJuego)) {
+      proximos.append(elemento);
     } else {
-      juegosDisponibles.append(articleJuego);
+      disponibles.append(elemento);
     }
-  });
+  };
+
+
+  const pintarJuegos = () => {
+    const proximos = document.querySelector(".seccion__hype");
+    const disponibles = document.querySelector(".seccion__disponibles");
+
+    if (!localStorage.getItem("datosLanzamientos") || !proximos) return;
+
+    const juegos = obtenerJuegos();
+
+    juegos.forEach((juego) =>
+      renderizarJuego(juego, proximos, disponibles)
+    );
+  };
+  pintarJuegos();
   anadirEventoResenas()
 };
 const anadirEventoResenas = () => {
@@ -456,6 +482,7 @@ const main = () => {
   detectarModoSistema();
   aplicarSwitchModo();
   menuHamburguesa();
+  debugger
   cargarPaginaResenas();
   validacionFormulario();
 };
