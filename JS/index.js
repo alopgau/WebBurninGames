@@ -176,8 +176,8 @@ const cargarPaginaResenas = () => {
 
   const crearElementoJuego = (juego) => {
     const article = document.createElement("article");
-    article.classList.add("copia__juego");
-    article.dataset.numJuego = juego.idJuego;
+    article.classList.add("juego");
+    article.dataset.numJuego = juego.numJuego;
 
     const figure = document.createElement("figure");
 
@@ -214,7 +214,40 @@ const cargarPaginaResenas = () => {
     }
   };
 
+  const pintarLocalStorage = (datos, destino, claseEstado) => {
 
+    const seccionProximos = document.querySelector(".seccion__hype");
+    const seccionDisponibles = document.querySelector(".seccion__disponibles");
+    const seccionEsperados = document.querySelector(".seccion__tusesperados");
+    const seccionFavoritos = document.querySelector(".seccion__favoritos");
+
+    if (!seccionDisponibles || !seccionProximos || !seccionEsperados || !seccionFavoritos) return;
+    if (!localStorage.getItem(datos)) return;
+
+    const juegosLS = obtenerDatosLS(datos);
+
+    juegosLS.forEach((juego) => {
+      const elemento = crearElementoJuego({
+        numJuego: juego.numJuego,
+        portadaJuego: juego.portadaJuego,
+        nombreJuego: juego.tituloJuego,
+        plataformasJuego: juego.plataformasJuego
+      });
+
+      const original = document.querySelector(`[data-num-juego="${juego.numJuego}"]`);
+      if (original) original.classList.add(claseEstado);
+
+
+      const copia = crearCopiaJuego(elemento, claseEstado);
+
+      destino.append(copia);
+
+
+      copia.addEventListener("click", () =>
+        eliminarJuego(copia, datos, juego.numJuego, claseEstado, original)
+      );
+    });
+  };
   const pintarJuegos = () => {
     const proximos = document.querySelector(".seccion__hype");
     const disponibles = document.querySelector(".seccion__disponibles");
@@ -228,131 +261,87 @@ const cargarPaginaResenas = () => {
     );
   };
   pintarJuegos();
-  anadirEventoResenas()
-};
-const anadirEventoResenas = () => {
-  if (!document.querySelector(".copia__juego")) return;
-  const seccionEsperados = document.querySelector(".seccion__tusesperados");
-  const seccionFavoritos = document.querySelector(".seccion__favoritos");
+  pintarLocalStorage("juegosDisponibles", document.querySelector(".seccion__favoritos"), "favorito");
+  pintarLocalStorage("juegosProximos", document.querySelector(".seccion__tusesperados"), "esperado");
+
   const seccionProximos = document.querySelector(".seccion__hype");
   const seccionDisponibles = document.querySelector(".seccion__disponibles");
-  const juegosProximos = seccionProximos.querySelectorAll(".copia__juego");
-  const juegosDisponibles = seccionDisponibles.querySelectorAll(".copia__juego");
-  if (localStorage.getItem("datosFavoritos")) {
-    const favoritosGuardados = JSON.parse(localStorage.getItem("datosFavoritos"))
-    const juegos = cargarJuegoDesdeJSON(favoritosGuardados, "favorito_ls");
-    juegos.forEach((juego) => {
-      juego.classList.add("eliminable")
-      seccionFavoritos.append(juego)
-    })
+  const proximos = seccionProximos.querySelectorAll(".juego")
+  const disponibles = seccionDisponibles.querySelectorAll(".juego")
+
+
+  proximos.forEach((juego) => {
+    juego.addEventListener(("click"), () => agregarJuego(juego, document.querySelector(".seccion__tusesperados"), "juegosProximos", "esperado"));
+  });
+  disponibles.forEach((juego) => {
+    juego.addEventListener(("click"), () => agregarJuego(juego, document.querySelector(".seccion__favoritos"), "juegosDisponibles", "esperado"))
+  });
+};
+
+const obtenerDatosLS = (clave) => {
+  return JSON.parse(localStorage.getItem(clave) || "[]");
+};
+
+const guardarDatosLS = (clave, datos) => {
+  localStorage.setItem(clave, JSON.stringify(datos));
+};
+
+const extraerDatosJuego = (elemento) => {
+  return {
+    numJuego: elemento.dataset.numJuego,
+    portadaJuego: elemento.querySelector(".portada__juego").src,
+    tituloJuego: elemento.querySelector(".titulo__juego").textContent,
+    plataformasJuego: elemento.querySelector(".plataforma__juego").textContent
+  };
+};
+
+const crearCopiaJuego = (juego, clase) => {
+  const copia = juego.cloneNode(true);
+  copia.classList.add("eliminable");
+  if (clase) copia.classList.add(clase);
+  return copia;
+};
+
+const eliminarJuego = (elemento, claveLS, filtroId, claseOriginal, juegoOriginal) => {
+  if (confirm("¿Seguro que quieres eliminar este juego?")) {
+    elemento.remove();
   }
-  if (localStorage.getItem("datosEsperados")) {
-    const esperadosGuardados = JSON.parse(localStorage.getItem("datosFavoritos"))
-    const juegos = cargarJuegoDesdeJSON(esperadosGuardados, "esperado__ls")
-    juegos.forEach((juego) => {
-      juego.classList.add("eliminable")
-      seccionEsperados.append(juego)
-      if (confirm("¿Seguro que quieres eliminar este juego de tus esperados?")) {
-        copia.remove()
-        juego.classList.remove("favorito")
-      }
-    })
-  }
-
-  const datosEsperados = JSON.parse(localStorage.getItem("datosEsperados") || "[]")
-  juegosProximos.forEach((juego) => {
-    juego.addEventListener("click", () => {
-      if (!juego.classList.contains("esperado")) {
-        const copia = juego.cloneNode(true)
-        seccionEsperados.append(copia)
-        juego.classList.add("esperado")
-        copia.classList.add("eliminable")
-        const portadaJuego = copia.querySelector(".portada__juego").getAttribute("src")
-        const tituloJuego = copia.querySelector(".titulo__juego").textContent
-        const plataformasJuego = copia.querySelector(".plataforma__juego").textContent
-        const datosJuego = { portadaJuego, tituloJuego, plataformasJuego }
-        localStorage.setItem("datosEsperados", JSON.stringify(datosEsperados))
-        datosEsperados.push(datosJuego)
-        copia.addEventListener("click", () => {
-          if (confirm("¿Seguro que quieres eliminar este juego de tus esperados?"))
-            copia.remove()
-          juego.classList.remove("esperado")
-        })
-      }
-
-    })
-  })
 
 
-  let datosFavoritos = JSON.parse(localStorage.getItem("datosFavoritos") || "[]")
-  juegosDisponibles.forEach((juego) => {
-    const numJuego = juego.getAttribute("data-numJuego")
-    juego.addEventListener("click", () => {
-      if (!juego.classList.contains("favorito")) {
-        const copia = juego.cloneNode(true)
-        seccionFavoritos.append(copia)
-        copia.classList.add("eliminable")
-        juego.classList.add("favorito")
-        const portadaJuego = copia.querySelector(".portada__juego").getAttribute("src")
-        const tituloJuego = copia.querySelector(".titulo__juego").textContent
-        const plataformasJuego = copia.querySelector(".plataforma__juego").textContent
-        const datosJuego = { numJuego, portadaJuego, tituloJuego, plataformasJuego }
-        datosFavoritos.push(datosJuego)
-        localStorage.setItem("datosFavoritos", JSON.stringify(datosFavoritos))
-        copia.addEventListener(("click"), () => {
-          if (confirm("¿Seguro que quieres eliminar este juego de tus favoritos?")) {
-            const FavoritosAux = JSON.parse(localStorage.getItem("datosFavoritos") || "[]")
-            copia.remove()
-            datosFavoritos = FavoritosAux.filter((it) => numJuego !== it.numJuego)
-            localStorage.setItem("datosFavoritos", JSON.stringify(datosFavoritos))
-            juego.classList.remove("favorito")
-          }
-        })
-      }
-    })
-  })
-}
+  let datos = obtenerDatosLS(claveLS);
+  datos = datos.filter((it) => it.numJuego !== filtroId);
 
+  guardarDatosLS(claveLS, datos);
 
+  if (juegoOriginal) juegoOriginal.classList.remove(claseOriginal);
+};
 
-const cargarJuegoDesdeJSON = (json, clase) => {
-  const listaJuegos = []
-  json.forEach((juego) => {
-    const articleJuego = document.createElement("article");
-    const nombreJuego = document.createElement("figcaption");
-    nombreJuego.classList.add("titulo__juego");
-    nombreJuego.textContent = `${juego.tituloJuego}`;
+const agregarJuego = (
+  juego,
+  seccionDestino,
+  claveLS,
+  claseEstado
+) => {
+  debugger
+  const juegoYaCopiado = seccionDestino.querySelector(`[data-num-juego="${juego.getAttribute("data-num-juego")}"]`)
+  if (juego.classList.contains(claseEstado)) return;
+  if (juegoYaCopiado) return;
+  const copia = crearCopiaJuego(juego);
+  const datos = extraerDatosJuego(copia);
 
-    const figureJuego = document.createElement("figure");
+  seccionDestino.append(copia);
 
-    articleJuego.classList.add("copia__juego");
-    const portadaJuego = document.createElement("img");
-    portadaJuego.setAttribute("src", juego.portadaJuego);
-    articleJuego.setAttribute("id", juego.idJuego);
-    portadaJuego.setAttribute("alt", `Portada de ${juego.nombreJuego}`);
+  juego.classList.add(claseEstado);
 
-    portadaJuego.classList.add("portada__juego");
-    const plataformasJuego = document.createElement("p");
-    plataformasJuego.classList.add("plataforma__juego");
-    plataformasJuego.textContent = `${juego.plataformasJuego}`;
-    articleJuego.append(figureJuego);
-    articleJuego.classList.add(clase)
-    figureJuego.append(portadaJuego, nombreJuego, plataformasJuego);
-    articleJuego.addEventListener("click", () => {
-      if (articleJuego.classList.contains("favorito__ls")) {
-        if (confirm("¿Seguro que quieres eliminar este juego de tus favoritos?")) {
-          articleJuego.remove()
-        }
-      } else {
-        if (confirm("¿Seguro que quieres eliminar este juego de tus esperados?")) {
-          articleJuego.remove()
-        }
-      }
-    })
-    listaJuegos.push(articleJuego)
-  })
-  return listaJuegos
-}
+  const lista = obtenerDatosLS(claveLS);
+  lista.push(datos);
+  guardarDatosLS(claveLS, lista);
+
+  copia.addEventListener("click", () =>
+    eliminarJuego(copia, claveLS, datos.numJuego, claseEstado, juego)
+  );
+};
+
 
 const validacionFormulario = () => {
   if (!document.querySelector(".seccion__contacto")) return;
@@ -482,7 +471,6 @@ const main = () => {
   detectarModoSistema();
   aplicarSwitchModo();
   menuHamburguesa();
-  debugger
   cargarPaginaResenas();
   validacionFormulario();
 };
