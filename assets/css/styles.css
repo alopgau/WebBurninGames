@@ -846,7 +846,6 @@ body.modo__claro {
     Segoe UI Emoji,
     Segoe UI Symbol,
     Noto Color Emoji;
-  box-shadow: 5px 5px var(--color-terciario);
   border-radius: 2rem;
   height: 100%;
   display: block;
@@ -880,7 +879,6 @@ body.modo__claro {
   background-color: var(--color-primario);
   border: solid 10px var(--color-terciario);
   width: 100%;
-  box-shadow: 10px 10px var(--color-terciario);
   border-radius: 1rem;
 }
 
@@ -987,13 +985,6 @@ body.modo__claro {
     sans-serif;
 }
 
-.formulario__campo:focus,
-.formulario__campo--mensaje:focus,
-.formulario__motivo:focus {
-  box-shadow: none;
-  outline: var(--color-letras-secundario);
-}
-
 .formulario__etiqueta--newsletter {
   font-family:
     system-ui,
@@ -1031,7 +1022,7 @@ body.modo__claro {
     Segoe UI Emoji,
     Segoe UI Symbol,
     Noto Color Emoji;
-  box-shadow: 5px 5px var(--color-terciario);
+
   border-radius: 2rem;
   height: 100%;
   width: 100%;
@@ -1052,11 +1043,6 @@ body.modo__claro {
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
-}
-
-.formulario__campo--newsletter:focus {
-  box-shadow: none;
-  outline: var(--color-secundario);
 }
 
 .menu__lista__articulo--elemento:hover {
@@ -1229,8 +1215,11 @@ body.modo__claro {
 }
 .error__formulario {
   text-align: center;
+  color: var(--color-letras);
   padding: 0.5rem;
+  background-color: var(--color-eliminable);
 }
+
 .boton-desactivado {
   opacity: 0.6;
   cursor: not-allowed;

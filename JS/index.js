@@ -420,6 +420,7 @@ const cargarPaginaResenas = () => {
    */
 
   const pintarJuegos = () => {
+    if (!document.querySelector("seccion__hype") || !document.querySelector("seccion__disponibles")) return;
     const proximos = document.querySelector(".seccion__hype");
     const disponibles = document.querySelector(".seccion__disponibles");
 
@@ -435,6 +436,7 @@ const cargarPaginaResenas = () => {
   pintarLocalStorage("juegosDisponibles", document.querySelector(".seccion__favoritos"), "favorito");
   pintarLocalStorage("juegosProximos", document.querySelector(".seccion__tusesperados"), "esperado");
 
+  if (!document.querySelector("seccion__hype") || !document.querySelector("seccion__disponibles")) return;
   const seccionProximos = document.querySelector(".seccion__hype");
   const seccionDisponibles = document.querySelector(".seccion__disponibles");
   const proximos = seccionProximos.querySelectorAll(".juego")
