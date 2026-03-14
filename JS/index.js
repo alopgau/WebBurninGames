@@ -67,6 +67,21 @@ const hrefJuegos = () => {
   }
 };
 
+/**
+ * Obtiene y agrupa todos los elementos del DOM necesarios
+ * para el funcionamiento del menú hamburguesa.
+ *
+ * @returns {Object} Objeto con las referencias a los elementos del menú.
+ * @property {HTMLElement|null} boton - Botón que abre el menú hamburguesa.
+ * @property {HTMLElement|null} luna - Icono del modo oscuro.
+ * @property {HTMLElement|null} sol - Icono del modo claro.
+ * @property {HTMLElement|null} desplegable - Contenedor del menú desplegable.
+ * @property {HTMLElement|null} main - Elemento <main> de la página.
+ * @property {HTMLElement|null} cabecera - Cabecera principal.
+ * @property {HTMLElement|null} seccionLogo - Sección del logo dentro de la cabecera.
+ * @property {HTMLElement|null} botonAtras - Botón para cerrar el menú.
+ */
+
 const obtenerElementosMenu = () => {
   return {
     boton: document.querySelector(".boton__menú__hamburguesa"),
@@ -79,6 +94,13 @@ const obtenerElementosMenu = () => {
     botonAtras: document.querySelector(".menu__desplegable__boton__atras"),
   };
 };
+
+/**
+ * Abre el menú hamburguesa y aplica los cambios visuales necesarios
+ * como ocultar iconos, hacer el fondo semitransparente y bloquear el scroll.
+ *
+ * @param {Object} el - Objeto con los elementos del menú.
+ */
 
 const abrirMenu = (el) => {
   el.desplegable.classList.replace("oculto", "menu__desplegable--desplegado");
@@ -104,6 +126,14 @@ const abrirMenu = (el) => {
   el.cabecera.classList.replace("cabecera", "cabecera--semitransparente");
 };
 
+/**
+ * Restaura el icono correcto del modo de color
+ * dependiendo de si el sitio está en modo claro u oscuro.
+ *
+ * @param {HTMLElement} luna - Icono de la luna (modo oscuro).
+ * @param {HTMLElement} sol - Icono del sol (modo claro).
+ */
+
 const restaurarIconoModo = (luna, sol) => {
 
   if (document.body.classList.contains("modo__oscuro")) {
@@ -113,21 +143,35 @@ const restaurarIconoModo = (luna, sol) => {
   }
 };
 
-const cerrarMenu = (el) => {
+/**
+ * Cierra el menú hamburguesa y restaura el estado visual
+ * original de la página.
+ *
+ * @param {Object} elemento - Objeto con los elementos del menú.
+ */
+
+const cerrarMenu = (elemento) => {
   document.body.style.overflow = "";
 
-  el.desplegable.classList.replace("menu__desplegable--desplegado", "oculto");
+  elemento.desplegable.classList.replace("menu__desplegable--desplegado", "oculto");
 
-  restaurarIconoModo(el.luna, el.sol);
+  restaurarIconoModo(elemento.luna, elemento.sol);
 
-  el.seccionLogo.classList.toggle("semitransparente");
+  elemento.seccionLogo.classList.toggle("semitransparente");
 
-  el.main.classList.toggle("semitransparente");
+  elemento.main.classList.toggle("semitransparente");
 
-  el.boton.classList.replace("oculto", "boton__menú__hamburguesa");
+  elemento.boton.classList.replace("oculto", "boton__menú__hamburguesa");
 
-  el.cabecera.classList.replace("cabecera--semitransparente", "cabecera");
+  elemento.cabecera.classList.replace("cabecera--semitransparente", "cabecera");
 };
+
+/**
+ * Inicializa la funcionalidad del menú hamburguesa
+ * añadiendo los eventos necesarios para abrir y cerrar el menú.
+ *
+ * @returns {void}
+ */
 
 const menuHamburguesa = () => {
   const elementos = obtenerElementosMenu();
@@ -146,6 +190,16 @@ const detectarModoSistema = () => {
     document.body.classList.add("modo__claro")
   }
 };
+
+/**
+ * Alterna entre el modo claro y el modo oscuro de la página.
+ * 
+ * Cambia la clase del <body> entre `modo__claro` y `modo__oscuro`
+ * y actualiza la visibilidad de los iconos de luna y sol
+ * para reflejar el modo activo.
+ *
+ * @returns {void}
+ */
 
 const toggleModo = () => {
 
@@ -168,6 +222,16 @@ const toggleModo = () => {
   sol.classList.toggle("visible");
   sol.classList.toggle("oculto");
 };
+
+/**
+ * Inicializa los eventos que permiten cambiar entre
+ * modo claro y modo oscuro.
+ *
+ * Añade un listener de click a los iconos de luna y sol
+ * para ejecutar la función {@link toggleModo}.
+ *
+ * @returns {void}
+ */
 
 const aplicarSwitchModo = () => {
   const luna = document.querySelector(".luna");
