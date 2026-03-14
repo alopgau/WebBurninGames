@@ -1,4 +1,12 @@
 "use strict";
+
+/**
+ * Asigna un enlace de redirección a un elemento de juego según su id.
+ * Cuando el usuario hace click en el elemento, se le redirige
+ * a la página oficial del juego correspondiente.
+ *
+ * @param {HTMLElement} juego - Elemento del DOM que representa un juego.
+ */
 const cargarHrefJuego = (juego) => {
   switch (juego.getAttribute("id")) {
     case "0":
@@ -7,17 +15,20 @@ const cargarHrefJuego = (juego) => {
           "https://www.nintendo.com/es-es/Juegos/Juegos-de-Nintendo-Switch-2/Hyrule-Warriors-La-era-del-destierro-2789659.html?srsltid=AfmBOoryhSGJioh5-0_hFfstbhmhxc7gD_xGct0OGVKUCyTSBEqiThBp";
       });
       break;
+
     case "1":
       juego.addEventListener("click", () => {
         window.location.href = "https://www.inazuma.jp/victory-road/es/";
       });
       break;
+
     case "2":
       juego.addEventListener("click", () => {
         window.location.href =
           "https://www.nintendo.com/es-es/Juegos/Juegos-de-Nintendo-Switch/Leyendas-Pokemon-Z-A-2533423.html?srsltid=AfmBOoqdYbEkZ1BOu8Ka4EzMSmiFLcfTGnLTlwOIfEK446FKyfyuOItE";
       });
       break;
+
     case "3":
       juego.addEventListener("click", () => {
         window.location.href =
@@ -30,16 +41,32 @@ const cargarHrefJuego = (juego) => {
   }
 };
 
+/**
+ * Inicializa los enlaces de todos los elementos con la clase `.juego`.
+ *
+ * - Comprueba si existen elementos con la clase `.juego`.
+ * - Asigna un id numérico incremental a cada uno.
+ * - Llama a {@link cargarHrefJuego} para asociar el evento de click
+ *   que redirige a la página correspondiente del juego.
+ *
+ * @returns {void}
+ */
 const hrefJuegos = () => {
   if (!document.querySelector(".juego")) return;
+
   const juegos = document.querySelectorAll(".juego");
+
+  // Asigna un id a cada juego según su posición
   for (let index = 0; index < juegos.length; index++) {
     juegos[index].setAttribute("id", index);
   }
+
+  // Añade el evento de redirección a cada juego
   for (const juego of juegos) {
     cargarHrefJuego(juego);
   }
 };
+
 const obtenerElementosMenu = () => {
   return {
     boton: document.querySelector(".boton__menú__hamburguesa"),
@@ -322,7 +349,7 @@ const agregarJuego = (
   claveLS,
   claseEstado
 ) => {
-  debugger
+
   const juegoYaCopiado = seccionDestino.querySelector(`[data-num-juego="${juego.getAttribute("data-num-juego")}"]`)
   if (juego.classList.contains(claseEstado)) return;
   if (juegoYaCopiado) return;
