@@ -25,6 +25,7 @@
   --color-primario__transparente: #fdf0d5b2;
   --color-hover-botones: #ff70a6;
   --color-hover-botones-secundario: #fff;
+  --color-eliminable: rgba(255, 0, 0, 0.5);
 }
 
 body {
@@ -611,6 +612,20 @@ body.modo__claro {
     Noto Color Emoji;
   font-weight: bold;
   width: 100%;
+}
+
+.eliminable::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-eliminable);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+
+.eliminable:hover::before {
+  opacity: 1;
 }
 
 .encabezado__tabla {
