@@ -240,7 +240,23 @@ const aplicarSwitchModo = () => {
   luna.addEventListener("click", toggleModo);
   sol.addEventListener("click", toggleModo);
 };
-
+/**
+ * Recorre todos los elementos del DOM con la clase `.juego`,
+ * extrae la información de cada uno y genera un array de objetos
+ * con sus datos.
+ *
+ * Después guarda ese array en el `localStorage` bajo la clave
+ * `"datosLanzamientos"` en formato JSON.
+ *
+ * Datos almacenados por cada juego:
+ * - Número del juego según su posición
+ * - URL de la portada
+ * - Nombre del juego
+ * - Plataformas disponibles
+ * - Fecha de lanzamiento
+ *
+ * @returns {void}
+ */
 const crearJSONJuegos = () => {
 
   let contador = 0
@@ -259,11 +275,42 @@ const crearJSONJuegos = () => {
   localStorage.setItem("datosLanzamientos", JSON.stringify(datosJuego));
 };
 
+/**
+ * Inicializa la página de reseñas.
+ *
+ * - Carga los juegos almacenados en `localStorage`.
+ * - Los clasifica en juegos próximos o disponibles según su fecha.
+ * - Los renderiza en sus secciones correspondientes.
+ * - Recupera los juegos guardados por el usuario (favoritos o esperados).
+ * - Añade los eventos para poder agregar o eliminar juegos de las listas.
+ *
+ * @returns {void}
+ */
+
 const cargarPaginaResenas = () => {
+
+  /**
+   * Obtiene los juegos almacenados en localStorage
+   * bajo la clave `datosLanzamientos`.
+   *
+   * @returns {Array<Object>} Array de juegos almacenados.
+   */
+
   const obtenerJuegos = () => {
     const datos = localStorage.getItem("datosLanzamientos");
     return datos ? JSON.parse(datos) : [];
   };
+
+  /**
+   * Crea un elemento HTML que representa un juego.
+   *
+   * @param {Object} juego - Datos del juego.
+   * @param {number} juego.numJuego - Identificador del juego.
+   * @param {string} juego.portadaJuego - URL de la portada.
+   * @param {string} juego.nombreJuego - Nombre del juego.
+   * @param {string} juego.plataformasJuego - Plataformas disponibles.
+   * @returns {HTMLElement} Elemento `<article>` que representa el juego.
+   */
 
   const crearElementoJuego = (juego) => {
     const article = document.createElement("article");
@@ -291,9 +338,25 @@ const cargarPaginaResenas = () => {
     return article;
   };
 
+  /**
+   * Comprueba si un juego es próximo según su fecha de lanzamiento.
+   *
+   * @param {string} fechaJuego - Fecha de lanzamiento del juego.
+   * @returns {boolean} `true` si el juego aún no ha salido.
+  */
+
   const esJuegoProximo = (fechaJuego) => {
     return new Date(fechaJuego) > Date.now();
   };
+
+  /**
+   * Renderiza un juego en la sección correspondiente
+   * según si es próximo o ya disponible.
+   *
+   * @param {Object} juego - Datos del juego.
+   * @param {HTMLElement} proximos - Contenedor de juegos próximos.
+   * @param {HTMLElement} disponibles - Contenedor de juegos disponibles.
+   */
 
   const renderizarJuego = (juego, proximos, disponibles) => {
     const elemento = crearElementoJuego(juego);
@@ -304,6 +367,15 @@ const cargarPaginaResenas = () => {
       disponibles.append(elemento);
     }
   };
+
+  /**
+   * Renderiza juegos almacenados en localStorage en una sección concreta.
+   *
+   * @param {string} datos - Clave del localStorage donde se guardan los juegos.
+   * @param {HTMLElement} destino - Contenedor donde se insertarán los juegos.
+   * @param {string} claseEstado - Clase CSS que indica el estado del juego (favorito, esperado).
+   * @returns {void}
+   */
 
   const pintarLocalStorage = (datos, destino, claseEstado) => {
 
@@ -339,6 +411,14 @@ const cargarPaginaResenas = () => {
       );
     });
   };
+
+  /**
+   * Renderiza todos los juegos almacenados en `datosLanzamientos`
+   * y los distribuye entre las secciones de próximos y disponibles.
+   *
+   * @returns {void}
+   */
+
   const pintarJuegos = () => {
     const proximos = document.querySelector(".seccion__hype");
     const disponibles = document.querySelector(".seccion__disponibles");
@@ -369,13 +449,42 @@ const cargarPaginaResenas = () => {
   });
 };
 
+
+/**
+ * Obtiene datos almacenados en localStorage y los convierte a objeto.
+ *
+ * @param {string} clave - Clave del localStorage donde se guardan los datos.
+ * @returns {Array<Object>} Array de objetos almacenados o array vacío si no existen datos.
+ */
+
 const obtenerDatosLS = (clave) => {
   return JSON.parse(localStorage.getItem(clave) || "[]");
 };
 
+
+/**
+ * Guarda datos en localStorage convirtiéndolos a JSON.
+ *
+ * @param {string} clave - Clave bajo la que se almacenarán los datos.
+ * @param {Array<Object>} datos - Datos que se desean guardar.
+ * @returns {void}
+**/
+
 const guardarDatosLS = (clave, datos) => {
   localStorage.setItem(clave, JSON.stringify(datos));
 };
+
+/**
+ * Extrae la información de un elemento de juego del DOM
+ * y la convierte en un objeto con sus datos.
+ *
+ * @param {HTMLElement} elemento - Elemento HTML que representa un juego.
+ * @returns {Object} Datos del juego.
+ * @property {string} numJuego - Identificador del juego.
+ * @property {string} portadaJuego - URL de la portada del juego.
+ * @property {string} tituloJuego - Título del juego.
+ * @property {string} plataformasJuego - Plataformas disponibles.
+ */
 
 const extraerDatosJuego = (elemento) => {
   return {
@@ -386,12 +495,38 @@ const extraerDatosJuego = (elemento) => {
   };
 };
 
+/**
+ * Crea una copia de un elemento de juego del DOM.
+ *
+ * La copia se utiliza normalmente para mostrar el juego
+ * en secciones como favoritos o esperados.
+ *
+ * @param {HTMLElement} juego - Elemento original del juego.
+ * @param {string} [clase] - Clase adicional que indica el estado del juego.
+ * @returns {HTMLElement} Elemento clonado del juego.
+ */
+
 const crearCopiaJuego = (juego, clase) => {
   const copia = juego.cloneNode(true);
   copia.classList.add("eliminable");
   if (clase) copia.classList.add(clase);
   return copia;
 };
+
+/**
+ * Elimina un juego del DOM y del localStorage.
+ *
+ * Muestra una confirmación al usuario antes de eliminar el juego.
+ * También elimina la clase de estado del juego original si existe.
+ *
+ * @param {HTMLElement} elemento - Elemento del juego que se eliminará.
+ * @param {string} claveLS - Clave del localStorage donde está almacenado el juego.
+ * @param {string|number} filtroId - Identificador del juego que se eliminará.
+ * @param {string} claseOriginal - Clase que indica el estado del juego.
+ * @param {HTMLElement} [juegoOriginal] - Elemento original del juego en la lista principal.
+ * @returns {void}
+ */
+
 
 const eliminarJuego = (elemento, claveLS, filtroId, claseOriginal, juegoOriginal) => {
   if (confirm("¿Seguro que quieres eliminar este juego?")) {
@@ -406,6 +541,19 @@ const eliminarJuego = (elemento, claveLS, filtroId, claseOriginal, juegoOriginal
 
   if (juegoOriginal) juegoOriginal.classList.remove(claseOriginal);
 };
+
+/**
+ * Agrega un juego a una sección específica y lo guarda en localStorage.
+ *
+ * Evita duplicados comprobando si el juego ya existe en la sección destino
+ * o si ya tiene la clase de estado aplicada.
+ *
+ * @param {HTMLElement} juego - Elemento original del juego.
+ * @param {HTMLElement} seccionDestino - Sección donde se añadirá la copia del juego.
+ * @param {string} claveLS - Clave del localStorage donde se guardará el juego.
+ * @param {string} claseEstado - Clase CSS que indica el estado del juego (favorito, esperado).
+ * @returns {void}
+ */
 
 const agregarJuego = (
   juego,
@@ -433,6 +581,18 @@ const agregarJuego = (
   );
 };
 
+/*
+* Inicializa la validación del formulario de contacto y newsletter.
+*
+* - Valida los campos de nombre, email, asunto y mensaje.
+* - Valida el email del formulario de newsletter.
+* - Muestra mensajes de error cuando los datos no son válidos.
+* - Activa o desactiva los botones de envío según el estado de validación.
+*
+* La validación se ejecuta en los eventos `blur` e `input`.
+*
+* @returns {void}
+*/
 
 const validacionFormulario = () => {
   if (!document.querySelector(".seccion__contacto")) return;
@@ -454,6 +614,13 @@ const validacionFormulario = () => {
     mensaje: false,
   };
   let newsletter = false
+
+  /**
+   * Valida un input del formulario según su tipo.
+   *
+   * @param {Event} e - Evento generado por el input.
+   * @returns {void}
+   */
 
   const validarInput = (e) => {
     const valor = e.target.value.trim();
@@ -503,6 +670,13 @@ const validacionFormulario = () => {
   }
 
 
+  /**
+   * Comprueba el estado de validación del formulario
+   * y habilita o deshabilita los botones de envío.
+   *
+   * @returns {void}
+   */
+
   const verificarEstadoBoton = () => {
     const todosValidos = Object.values(estadoValidacion).every(valor => valor === true);
 
@@ -522,6 +696,14 @@ const validacionFormulario = () => {
     }
   }
 
+  /**
+   * Muestra un mensaje de error debajo de un input.
+   *
+   * @param {HTMLElement} input - Campo del formulario donde se mostrará el error.
+   * @param {string} mensaje - Texto del mensaje de error.
+   * @returns {void}
+   */
+
   const mostrarError = (input, mensaje) => {
     limpiarError(input);
 
@@ -531,6 +713,14 @@ const validacionFormulario = () => {
 
     input.parentElement.append(error);
   }
+
+  /**
+   * Elimina el mensaje de error de un input si existe.
+   *
+   * @param {HTMLElement} input - Campo del formulario del que se eliminará el error.
+   * @returns {void}
+   *
+   */
 
   const limpiarError = (input) => {
     const alerta = input.parentElement.querySelector(".error__formulario");
