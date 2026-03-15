@@ -128,3 +128,128 @@ Además de respetar `prefers-reduced-motion`, me he asegurado de que los colores
 He sometido el CSS al validador de W3C para asegurar que la sintaxis es correcta y no contiene errores. Todas las pruebas han pasado con éxito, garantizando un código limpio y conforme a los estándares.
 
 ![](ValidacionCSS.png)
+---
+Claro, aquí tienes la continuación del README enfocada en la parte de JavaScript de tu proyecto, siguiendo el mismo estilo y estructura que has utilizado hasta ahora.
+
+---
+
+## **Estrategia JavaScript: Lógica de Interacción y Persistencia**
+
+El código JavaScript de BurninGames está desarrollado con un enfoque **funcional y modular**, priorizando la legibilidad, el mantenimiento y la separación de responsabilidades. Se utiliza `"use strict"` para garantizar un código más seguro y evitar errores comunes. La estrategia principal se basa en la manipulación directa del DOM, la gestión de eventos y el uso de `localStorage` para crear una experiencia de usuario persistente y personalizada.
+
+### **Arquitectura y Estructura del Código**
+
+El punto de entrada es la función `main()`, que actúa como orquestador, inicializando todos los módulos necesarios según la página en la que se encuentre el usuario. Esto asegura que solo se ejecute el código relevante para cada vista.
+
+```javascript
+const main = () => {
+  if (!localStorage.getItem("datosLanzamientos") && document.querySelector(".juego")) {
+    crearJSONJuegos(); // Solo en la página de lanzamientos
+  }
+  hrefJuegos();        // Enlaces a páginas oficiales
+  detectarModoSistema(); // Preferencia de tema del SO
+  aplicarSwitchModo();  // Cambio manual de tema
+  menuHamburguesa();    // Navegación móvil
+  cargarPaginaResenas(); // Lógica de "Mis juegos" (solo en reseñas)
+  validacionFormulario(); // Validación en tiempo real (solo en contacto)
+};
+main();
+```
+
+Cada funcionalidad clave está encapsulada en su propia función (ej. `menuHamburguesa()`, `validacionFormulario()`), lo que facilita la depuración y la reutilización del código.
+
+### **Manipulación Dinámica del DOM**
+
+Se hace un uso extenso de la manipulación del DOM para crear experiencias interactivas sin recargar la página. Algunos ejemplos destacados son:
+
+#### **1. Menú Hamburguesa Responsive**
+Se gestiona la apertura y cierre del menú en dispositivos móviles modificando clases CSS y estilos del `body` para bloquear el scroll.
+
+```javascript
+const abrirMenu = (el) => {
+  el.desplegable.classList.replace("oculto", "menu__desplegable--desplegado");
+  el.boton.classList.replace("boton__menú__hamburguesa", "oculto");
+  document.body.style.overflow = "hidden"; // Bloquea el scroll de fondo
+  // ... más cambios visuales
+};
+```
+
+#### **2. Sistema de "Mis Juegos" (Favoritos y Esperados)**
+Esta es la funcionalidad más compleja. Permite a los usuarios guardar juegos en listas personalizadas (`seccion__favoritos` y `seccion__tusesperados`) haciendo clic sobre ellos.
+
+- **Creación de elementos:** La función `crearElementoJuego()` genera dinámicamente la estructura HTML de un juego a partir de un objeto de datos.
+- **Clonado para listas personales:** Al hacer clic en un juego, se crea una copia (`.cloneNode(true)`) que se añade a la sección correspondiente. Esta copia lleva la clase `eliminable` para poder ser borrada posteriormente.
+- **Persistencia con `localStorage`:** Cada vez que un usuario añade o elimina un juego de sus listas, los datos se guardan en `localStorage` bajo las claves `juegosDisponibles` y `juegosProximos`. Al volver a la página, `cargarPaginaResenas()` recupera estos datos y los pinta.
+
+```javascript
+const agregarJuego = (juego, seccionDestino, claveLS, claseEstado) => {
+  // ... validaciones para evitar duplicados
+  const copia = crearCopiaJuego(juego);
+  const datos = extraerDatosJuego(copia);
+  seccionDestino.append(copia);
+  // ... guardar en localStorage
+};
+```
+
+#### **3. Redirección a Páginas Oficiales**
+Cada juego en la página de lanzamientos tiene un `id` numérico asignado dinámicamente. Al hacer clic, se ejecuta un `switch` que redirige al usuario a la página oficial del producto.
+
+```javascript
+const cargarHrefJuego = (juego) => {
+  switch (juego.getAttribute("id")) {
+    case "0":
+      juego.addEventListener("click", () => {
+        window.location.href = "https://...";
+      });
+      break;
+    // ... más casos
+  }
+};
+```
+
+### **Gestión de Estado y Persistencia**
+
+Se utiliza `localStorage` como una base de datos simple en el navegador para mantener el estado entre sesiones.
+
+- **Creación de la base de datos de juegos:** La función `crearJSONJuegos()` recorre el DOM de la página de Lanzamientos, extrae los datos de todos los juegos (título, portada, plataformas, fecha) y los guarda en `localStorage` bajo la clave `"datosLanzamientos"`. Esto crea una fuente de datos única y reutilizable.
+- **Gestión de listas de usuario:** Las funciones `obtenerDatosLS(clave)` y `guardarDatosLS(clave, datos)` son helpers genéricos que abstraen la lectura y escritura en `localStorage`, evitando la repetición de `JSON.parse` y `JSON.stringify`.
+
+### **Validación de Formularios en Tiempo Real**
+
+El formulario de contacto y el de newsletter implementan una validación robusta del lado del cliente para mejorar la experiencia de usuario y reducir errores de entrada.
+
+- **Eventos `blur` e `input`:** La validación se ejecuta cuando el usuario sale de un campo (`blur`) y cada vez que escribe (`input`), proporcionando feedback inmediato.
+- **Mensajes de error contextuales:** Si un campo no es válido, se crea y muestra un elemento `<p>` con la clase `error__formulario` justo debajo del input. Este mensaje desaparece automáticamente al corregir el error.
+- **Control de los botones de envío:** Los botones "Enviar" permanecen deshabilitados (con la clase `boton-desactivado`) hasta que todos los campos del formulario correspondiente sean válidos. Esto se controla mediante un objeto de estado (`estadoValidacion`) que se actualiza en cada validación.
+
+### **Sistema de Temas (Claro / Oscuro)**
+
+El cambio de tema se implementa de forma limpia y eficiente gracias a la arquitectura CSS basada en variables.
+
+1.  **Detección inicial:** `detectarModoSistema()` comprueba la preferencia del sistema operativo del usuario con `window.matchMedia("(prefers-color-scheme: dark)")` y aplica la clase `modo__oscuro` o `modo__claro` al `<body>`.
+2.  **Cambio manual:** `toggleModo()` se encarga de intercambiar estas clases en el `<body>` y de actualizar la visibilidad de los iconos de luna y sol para reflejar el nuevo estado. No necesita modificar estilos individuales, solo la clase raíz.
+
+### **Manejo de Eventos**
+
+Se utiliza `addEventListener` de forma intensiva para conectar la lógica de JavaScript con las interacciones del usuario.
+- Eventos de `click` para el menú, el cambio de tema y la gestión de juegos.
+- Eventos `blur` e `input` para la validación de formularios.
+- Se tiene cuidado de no añadir múltiples listeners al mismo elemento y se usan funciones con nombre para una mejor legibilidad y depuración.
+
+---
+
+## **Validación y Pruebas**
+
+El código JavaScript ha sido probado en diferentes navegadores y dispositivos para asegurar su correcto funcionamiento. Se ha prestado especial atención a:
+
+- **Ausencia de errores en la consola:** Todas las funciones están envueltas en comprobaciones para asegurar que los elementos del DOM existen antes de ser manipulados (ej. `if (!document.querySelector(".seccion__contacto")) return;`).
+- **Persistencia correcta de datos:** Se ha verificado que los datos guardados en `localStorage` se mantienen entre sesiones y se renderizan correctamente al recargar la página.
+- **Experiencia de usuario fluida:** Las transiciones y los cambios de estado (como el bloqueo del scroll al abrir el menú) son suaves y no presentan parpadeos ni comportamientos inesperados.
+
+| Herramienta / Prueba | Resultado |
+| :--- | :--- |
+| **Consola del Navegador** | Sin errores |
+| **Pruebas de `localStorage`** | Datos guardados y recuperados correctamente |
+| **Validación de Formularios** | Feedback en tiempo real, botones deshabilitados correctamente |
+| **Modo Claro / Oscuro** | Cambio suave, respeta preferencia del SO |
+| **Responsive (Menú Hamburguesa)** | Abre y cierra correctamente, bloquea scroll en móvil |
