@@ -127,3 +127,4 @@ Además de respetar `prefers-reduced-motion`, me he asegurado de que los colores
 
 He sometido el CSS al validador de W3C para asegurar que la sintaxis es correcta y no contiene errores. Todas las pruebas han pasado con éxito, garantizando un código limpio y conforme a los estándares.
 
+![](ValidacionCSS.png)
