@@ -53,8 +53,6 @@ Por último, los `<textarea>` están pensados para mensajes que pueden extenders
 ![](Validacion4.png)
 ![](Validacion5.png)
 ![](Validacion6.png)
-Claro, aquí tienes la continuación del README enfocada en la parte de CSS de tu proyecto, siguiendo el mismo estilo y estructura que has utilizado.
-
 ---
 
 ## **Estrategia CSS: Arquitectura y Estilizado**
