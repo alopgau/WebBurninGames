@@ -370,12 +370,13 @@ body.modo__claro {
 .seccion__disponibles,
 .seccion__favoritos,
 .seccion__proximos,
+.seccion__hype,
 .seccion__tusesperados {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
   gap: 2rem;
-  padding: 1.3rem;
+  padding: 2rem;
 }
 
 .seccion__recientes:last-child {
@@ -1266,7 +1267,8 @@ body.modo__claro {
   .seccion__disponibles,
   .seccion__proximos,
   .seccion__favoritos,
-  .seccion__hype {
+  .seccion__hype,
+  .seccion__tusesperados {
     display: flex;
     flex-direction: column;
     justify-content: center;
