@@ -329,7 +329,7 @@ const cargarPaginaResenas = () => {
     titulo.textContent = juego.nombreJuego;
 
     const plataformas = document.createElement("p");
-    plataformas.classList.add("plataforma__juego");
+    plataformas.classList.add("plataforma__juego2");
     plataformas.textContent = juego.plataformasJuego;
 
     figure.append(img, titulo, plataformas);
@@ -493,7 +493,7 @@ const extraerDatosJuego = (elemento) => {
     numJuego: elemento.dataset.numJuego,
     portadaJuego: elemento.querySelector(".portada__juego").src,
     tituloJuego: elemento.querySelector(".titulo__juego").textContent,
-    plataformasJuego: elemento.querySelector(".plataforma__juego").textContent
+    plataformasJuego: elemento.querySelector(".plataforma__juego2").textContent
   };
 };
 
