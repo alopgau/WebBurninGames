@@ -1363,9 +1363,6 @@ body.modo__claro {
   .logo {
     max-height: 96.67px;
   }
-  .cabecera__etiqueta {
-    font-size: 0.3rem;
-  }
 }
 @media screen and (max-width: 400px) {
   .formulario__campo {
