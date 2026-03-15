@@ -373,8 +373,8 @@ body.modo__claro {
 .seccion__tusesperados {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
   justify-items: center;
+  gap: 2rem;
   padding: 1.3rem;
 }
 
@@ -1360,6 +1360,9 @@ body.modo__claro {
   }
   .logo {
     max-height: 96.67px;
+  }
+  .cabecera__etiqueta {
+    font-size: 0.3rem;
   }
 }
 @media screen and (max-width: 400px) {
