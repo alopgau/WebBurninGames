@@ -108,7 +108,7 @@ Combino **CSS Grid** y **Flexbox** para crear layouts responsivos y adaptables.
 Las interacciones del usuario se realzan mediante pseudo-clases como `:hover`.
 *   Los elementos clickables (juegos, noticias, botones) tienen transiciones suaves que modifican propiedades como `transform` (escala o desplazamiento) y `box-shadow`, dando una sensación táctil y dinámica.
 *   El equipo tiene una animación de "salto" al pasar el ratón, añadiendo un toque de personalidad y diversión a la página.
-*   Para los mensajes del foro que pueden ser "eliminables", uso un pseudo-elemento `::before` que crea una superposición semitransparente al hacer hover, indicando visualmente una acción destructiva sin necesidad de JavaScript.
+*   Para los elementos que pueden ser "eliminables", uso un pseudo-elemento `::before` que crea una superposición semitransparente al hacer hover, indicando visualmente una acción destructiva sin necesidad de JavaScript.
 
 ### **Diseño Responsive**
 
